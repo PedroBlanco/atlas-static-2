@@ -1,0 +1,29 @@
+{
+  "title": "BakeIt Demo",
+  "longTitle": "BakeIt - Static Site Generator",
+  "metaDescription": "This is an example project that demonstrates static site generator BakeIt",
+  "metaKeywords": "static site, generator, templates",
+  "htmlLang": "en",
+
+  "menuItems": [
+    { "name": "New York", "url": "/newyork" }
+  ],
+
+  "build": {
+    "sourceDir": "./src",
+    "outputDir": "./dist",
+
+    "templateLanguage": "handlebars",
+    "templateFileExtension": ".hbs",
+
+    "sitemapPage": "sitemap.html",
+
+    "scripts": [
+    ],
+    "styles": [
+    ],
+    "copy": [
+      { "src": "./dist/newyork/index.html", "dst": "./dist/index.html" }
+    ]
+  }
+}
