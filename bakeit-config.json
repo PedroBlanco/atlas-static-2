@@ -6,8 +6,8 @@
   "htmlLang": "en",
 
   "menuItems": [
-    { "name": "Mapas", "url": "/mapas" },
-    { "name": "New York", "url": "/newyork" }
+    { "name": "Mapas", "url": "mapas" },
+    { "name": "New York", "url": "newyork" }
   ],
 
   "build": {
@@ -24,7 +24,7 @@
     "styles": [
     ],
     "copy": [
-      { "src": "./dist/mapas/index.html", "dst": "./dist/index.html" }
+      { "src": "./dist/mapas/index.html", "dst": "./dist/atlas.html" }
     ]
   }
 }
