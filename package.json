@@ -1,0 +1,13 @@
+{
+  "name": "atlas-static-2",
+  "version": "0.0.1",
+  "description": "Generador estático y ligero del Atlas de Conocimiento Crítico",
+  "main": "as2.js",
+  "repository": "https://github.com/PedroBlanco/atlas-static-2",
+  "author": "Pedro Blanco Wasmer <9304344+PedroBlanco@users.noreply.github.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "papaparse": "^5.3.1"
+  }
+}
