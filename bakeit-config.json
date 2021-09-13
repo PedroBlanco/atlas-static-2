@@ -21,10 +21,16 @@
 
     "scripts": [
     ],
+
     "styles": [
     ],
+
     "copy": [
-      { "src": "./dist/mapas/index.html", "dst": "./dist/atlas.html" }
+      { "src": "./dist/mapas/index.html", "dst": "./dist/atlas.html" },
+      { "src": "./node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css", "dst": "./dist/css/MarkerCluster.Default.css" },
+      { "src": "./node_modules/leaflet.markercluster/dist/MarkerCluster.css", "dst": "./dist/css/MarkerCluster.css" },
+      { "src": "./node_modules/leaflet.markercluster/dist/leaflet.markercluster.js", "dst": "./dist/js/leaflet.markercluster.js" },
+      { "src": "./node_modules/leaflet.markercluster/dist/leaflet.markercluster.js.map", "dst": "./dist/js/leaflet.markercluster.js.map" }
     ]
   }
 }

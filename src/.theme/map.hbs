@@ -18,18 +18,22 @@
       }).addTo(map);
 
       var marker;
+      var markers = L.markerClusterGroup();
 
       {{#each pages}}
         {{#if frontMatter.latlng}}
         {{#if frontMatter.hint}}
         {{#if url}}
-          marker = L.marker([{{frontMatter.latlng}}]);
-          marker.addTo(map).bindPopup('<h6><a href="{{url}}">{{frontMatter.hint}}</a><br/><span class="small">Tags: <i>{{frontMatter.tags}}</i></span></h6>');
-          {{!-- marker.addTo(map).bindPopup({{{map-popup}}}); --}}
+
+          marker = L.marker([{{frontMatter.latlng}}]).bindPopup('<h6><a href="{{url}}">{{frontMatter.hint}}</a><br/><span class="small">Tags: <i>{{frontMatter.tags}}</i></span></h6>');
+          markers.addLayer(marker);
+
         {{/if}}  
         {{/if}}
         {{/if}}
       {{/each}}
+
+      map.addLayer(markers);
     }
   });
   </script>
