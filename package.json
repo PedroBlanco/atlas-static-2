@@ -9,5 +9,8 @@
   "private": false,
   "dependencies": {
     "papaparse": "^5.3.1"
+  },
+  "scripts": {
+    "csv2md": "node scripts/csv2md.js"
   }
 }
