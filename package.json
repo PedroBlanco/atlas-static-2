@@ -5,7 +5,7 @@
   "main": "as2.js",
   "repository": "https://github.com/PedroBlanco/atlas-static-2",
   "author": "Pedro Blanco Wasmer <9304344+PedroBlanco@users.noreply.github.com>",
-  "license": "MIT",
+  "license": "EUPL",
   "private": false,
   "dependencies": {
     "papaparse": "^5.3.1"
