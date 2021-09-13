@@ -8,6 +8,7 @@
   "license": "EUPL-1.2",
   "private": false,
   "dependencies": {
+    "handlebars": "^4.7.7",
     "papaparse": "^5.3.1"
   },
   "scripts": {
