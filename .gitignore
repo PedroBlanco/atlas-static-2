@@ -1,5 +1,5 @@
-dist/
-src/mapas/
+dist/*
+src/mapas/*
 
 node_modules
 /public/hot
