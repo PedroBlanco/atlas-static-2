@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>New York | Atlas de Conocimiento Crítico, versión ligera y estática</title>
+  <title>Publicación de noticias y avisos en la Intranet de la Delegación del Gobierno en Córdoba | Atlas de Conocimiento Crítico, versión ligera y estática</title>
   <base href="/">
   <meta name="description" content="This is an example project that demonstrates static site generator BakeIt">
-  <meta name="keywords" content="static site, conocimiento crítico, gestión del conocimiento, knowledge management, ">
+  <meta name="keywords" content="static site, conocimiento crítico, gestión del conocimiento, knowledge management, informatica, proceso, fase 1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   
@@ -58,31 +58,36 @@
   </nav>
 
     
-  <div id="map" class="mapstyle"></div>
-
-  <script>
-  var app = new Vue({
-    el: '#map',
-    
-    data: {
-    },
-
-    mounted: function () {
-      var map = L.map('map').setView([40.749699, -73.987837], 13);
-      //L.Icon.Default.imagePath = 'assets/images';
-
-      // it is required to show attribution to see the map
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
-
-      var marker;
-
-          marker = L.marker([40.7479448,-73.9902954]);
-          marker.addTo(map).bindPopup('<h6><a href="/newyork/empire-state-building">Empire State Building</a><br/><span class="small">Tags: <i>skyscrapers, buildings, landmark</i></span></h6>');
-    }
-  });
-  </script>
+    <div class="content-window">
+      <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-8">            
+              <div class="video embed-responsive embed-responsive-16by9">
+                  <iframe width=960 height=540 src="https://www.youtube.com/embed/o0dmd81FAaM"
+                      frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              </div>
+              <br>
+              <h4>Publicación de noticias y avisos en la Intranet de la Delegación del Gobierno en Córdoba</h4>
+              <div class="small">Etiquetas: <i>informatica, proceso, fase 1</i></div>
+              <br>
+          </div>
+          <div class="col-md-4">
+              <div><ul>
+<li>Publicación de noticias y avisos en la Intranet de la Delegación del Gobierno en Córdoba</li>
+<li>2020-01-29</li>
+<li>2020-02-09</li>
+<li>Administración General</li>
+<li>Fase 1 (del Manual 1.0)</li>
+<li>Proceso</li>
+<li>Blanco Wasmer, Pedro</li>
+<li>Delegación del Gobierno en Córdoba</li>
+</ul>
+<p><a href="https://ws168.juntadeandalucia.es/wikigestionC/index.php?title=Mapa_de_Conocimiento_Cr%C3%ADtico">Más información en</a></p>
+</div>
+          </div>
+      </div>
+      </div>
+    </div>
 
     
 </body>

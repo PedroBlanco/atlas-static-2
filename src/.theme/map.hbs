@@ -24,7 +24,8 @@
         {{#if frontMatter.hint}}
         {{#if url}}
           marker = L.marker([{{frontMatter.latlng}}]);
-          marker.addTo(map).bindPopup('<h6><a href="{{url}}">{{frontMatter.hint}}</a></h6>');
+          marker.addTo(map).bindPopup('<h6><a href="{{url}}">{{frontMatter.hint}}</a><br/><span class="small">Tags: <i>{{frontMatter.tags}}</i></span></h6>');
+          {{!-- marker.addTo(map).bindPopup({{{map-popup}}}); --}}
         {{/if}}  
         {{/if}}
         {{/if}}

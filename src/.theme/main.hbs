@@ -36,6 +36,7 @@
     crossorigin=""></script>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="test.js"></script>
 
 </head>
 
@@ -60,5 +61,7 @@ function beforeRender(engine, pageData) {
     } else {
         pageData.pageContent = engine.renderTemplate(pageData.frontMatter.template, pageData);
     }
+
+    //Handlebars.registerPartial('map-popup', '{{title}}');
 }
 </script>

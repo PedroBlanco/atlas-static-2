@@ -1,11 +1,12 @@
 {
-  "title": "BakeIt Demo",
-  "longTitle": "BakeIt - Static Site Generator",
+  "title": "Atlas de Conocimiento Crítico",
+  "longTitle": "Atlas de Conocimiento Crítico, versión ligera y estática",
   "metaDescription": "This is an example project that demonstrates static site generator BakeIt",
-  "metaKeywords": "static site, generator, templates",
+  "metaKeywords": "static site, conocimiento crítico, gestión del conocimiento, knowledge management",
   "htmlLang": "en",
 
   "menuItems": [
+    { "name": "Mapas", "url": "/mapas" },
     { "name": "New York", "url": "/newyork" }
   ],
 
@@ -19,11 +20,12 @@
     "sitemapPage": "sitemap.html",
 
     "scripts": [
+      "src/test.js"
     ],
     "styles": [
     ],
     "copy": [
-      { "src": "./dist/newyork/index.html", "dst": "./dist/index.html" }
+      { "src": "./dist/mapas/index.html", "dst": "./dist/index.html" }
     ]
   }
 }
