@@ -40,13 +40,14 @@ fs.readFile(filename, 'utf8' , (err, data) => {
             // console.log ( result ); // Mostramos la línea convertida a MarkDown
 
             // Creamos un archivo en destdir_mapas por cada línea convertida a MarkDown
-            fs.writeFile( destdir_mapas + '/' + row.data['Nombre del mapa'] + '.md', result, err => {
+            var _map_filename = destdir_mapas + '/' + row.data['Nombre del mapa'].replace(/[\/\s]/g,'_') + '.md'
+            fs.writeFile( _map_filename, result, err => {
                 if (err) {
                   console.error(err)
                   return
                 }
                 //file written successfully
-                console.log ( '+ Creando ' + destdir_mapas + '/' + row.data['Nombre del mapa'] + '.md' );
+                console.log ( '+ Creando ' + _map_filename );
               });
         },
         complete: function() {
