@@ -20,7 +20,6 @@
     "sitemapPage": "sitemap.html",
 
     "scripts": [
-      "src/test.js"
     ],
     "styles": [
     ],
