@@ -14,11 +14,12 @@
 
       // it is required to show attribution to see the map
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
 
       var marker;
       var markers = L.markerClusterGroup();
+      var stamen_layer = new L.StamenTileLayer("watercolor");
 
       {{#each pages}}
         {{#if frontMatter.latlng}}
@@ -33,6 +34,7 @@
         {{/if}}
       {{/each}}
 
+      map.addLayer(stamen_layer);
       map.addLayer(markers);
     }
   });
