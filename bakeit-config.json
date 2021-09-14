@@ -6,8 +6,7 @@
   "htmlLang": "en",
 
   "menuItems": [
-    { "name": "Mapas", "url": "mapas" },
-    { "name": "New York", "url": "newyork" }
+    { "name": "Mapas", "url": "mapas" }
   ],
 
   "build": {
