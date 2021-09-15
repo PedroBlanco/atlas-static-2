@@ -10,9 +10,10 @@
 
     mounted: function () {
       var options = {
-      // Con un nivel 14 minimizamos los errores 503 del servidor, pero no los eliminamos (p.e. suroeste de Linares en nivel 15)
-        maxZoom: 14,
-
+      // Con un nivel 14 minimizaríamos los errores 503 del servidor, pero no los eliminamos (p.e. suroeste de Linares en nivel 15)
+        maxZoom: 15,
+        zoomDelta: 0.5,
+        zoomSnap: 0.5
       }
 
       var map = L.map('map', options ).setView([{{frontMatter.latlng}}], {{frontMatter.mapzoom}});
