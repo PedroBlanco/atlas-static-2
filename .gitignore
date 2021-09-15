@@ -59,3 +59,7 @@ jspm_packages/
 
 # Yarn Integrity file
 .yarn-integrity
+
+# Archivos específicos que vuelven a salir en VSCodium (?)
+dist/newyork/index.html
+dist/mapas/index.html
