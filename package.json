@@ -8,6 +8,7 @@
   "license": "EUPL-1.2",
   "private": false,
   "dependencies": {
+    "bakeit": "^0.2.6",
     "handlebars": "^4.7.7",
     "leaflet.markercluster": "^1.5.1",
     "papaparse": "^5.3.1"
