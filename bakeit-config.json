@@ -1,12 +1,13 @@
 {
   "title": "Atlas de Conocimiento Crítico",
   "longTitle": "Atlas de Conocimiento Crítico, versión ligera y estática",
-  "metaDescription": "This is an example project that demonstrates static site generator BakeIt",
-  "metaKeywords": "static site, conocimiento crítico, gestión del conocimiento, knowledge management",
+  "metaDescription": "Atlas de Mapas de Conocimiento Crítico, versión ligera y estática, del programa de Embajadores del Conocimiento (IAAP - Junta de Andalucía)",
+  "metaKeywords": "static site, conocimiento crítico, gestión del conocimiento, knowledge management, embajadores del conocimiento",
   "htmlLang": "en",
 
   "menuItems": [
-    { "name": "Mapas", "url": "mapas" }
+    { "name": "Mapas", "url": "mapas" },
+    { "name": "Acerca de...", "url": "acerca-de" }
   ],
 
   "build": {
