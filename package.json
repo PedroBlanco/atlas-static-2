@@ -11,6 +11,7 @@
     "bakeit": "^0.2.6",
     "handlebars": "^4.7.7",
     "leaflet": "^1.7.1",
+    "leaflet-search": "^3.0.2",
     "leaflet.markercluster": "^1.5.1",
     "papaparse": "^5.3.1"
   },

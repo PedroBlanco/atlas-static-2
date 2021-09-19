@@ -18,6 +18,8 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/MarkerCluster.Default.css">
   <link rel="stylesheet" href="css/MarkerCluster.css">
+  <link rel="stylesheet" href="css/leaflet-search.min.css">
+  <link rel="stylesheet" href="css/leaflet-search.mobile.min.css">
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
@@ -35,6 +37,8 @@
   <script src="js/leaflet.js"></script>
 
   <script src="js/leaflet.markercluster.js"></script>
+
+  <script src="js/leaflet-search.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
@@ -55,6 +59,7 @@
         <div class="navbar-nav">
           <a class="nav-item nav-link" href="mapas">Mapas</a>
           <a class="nav-item nav-link" href="acerca-de">Acerca de...</a>
+          <div id="findbox"></div>
         </div>
       </div>
   </nav>
@@ -91,13 +96,24 @@
       var stamen_layer_tonerlines = new L.StamenTileLayer("toner-hybrid");
 
 
-          marker = L.marker([40.7479448,-73.9902954]).bindPopup('<h6><a href="/newyork/empire-state-building">Empire State Building</a><br/><span class="small">Tags: <i>skyscrapers, buildings, landmark</i></span></h6>');
+          marker = L.marker(
+              [40.7479448,-73.9902954],
+              { title: 'Empire State Building' }
+            ).bindPopup ( '<h6><a href="/newyork/empire-state-building">Empire State Building</a><br/><span class="small">Tags: <i>skyscrapers, buildings, landmark</i></span></h6>' );
           markers.addLayer(marker);
 
 
       map.addLayer(stamen_layer_watercolor);
       map.addLayer(stamen_layer_tonerlines);
       map.addLayer(markers);
+
+      map.addControl( new L.Control.Search({
+        container: 'findbox',
+        layer: markers,
+        initial: false,
+        collapsed: false
+      }) );
+      //inizialize search control
     }
   });
   </script>

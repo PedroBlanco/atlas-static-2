@@ -34,7 +34,10 @@
         {{#if frontMatter.hint}}
         {{#if url}}
 
-          marker = L.marker([{{frontMatter.latlng}}]).bindPopup('<h6><a href="{{url}}">{{frontMatter.hint}}</a><br/><span class="small">Tags: <i>{{frontMatter.tags}}</i></span></h6>');
+          marker = L.marker(
+              [{{frontMatter.latlng}}],
+              { title: '{{frontMatter.hint}}' }
+            ).bindPopup ( '<h6><a href="{{url}}">{{frontMatter.hint}}</a><br/><span class="small">Tags: <i>{{frontMatter.tags}}</i></span></h6>' );
           markers.addLayer(marker);
 
         {{/if}}  
@@ -45,6 +48,14 @@
       map.addLayer(stamen_layer_watercolor);
       map.addLayer(stamen_layer_tonerlines);
       map.addLayer(markers);
+
+      map.addControl( new L.Control.Search({
+        container: 'findbox',
+        layer: markers,
+        initial: false,
+        collapsed: false
+      }) );
+      //inizialize search control
     }
   });
   </script>

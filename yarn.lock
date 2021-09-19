@@ -735,6 +735,13 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
+leaflet-search@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/leaflet-search/-/leaflet-search-3.0.2.tgz#a70099c6d738f2403f0fb45e64de75ca5e762cfc"
+  integrity sha512-DtI8LTthhjRzxfNQTgYNuvrk+5hLTISFdemSVrtvnyPA31/a8NGE3GInS19eLGZIgHAYtbUFOHO1/OLbxhi6Yw==
+  dependencies:
+    leaflet "*"
+
 leaflet.markercluster@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/leaflet.markercluster/-/leaflet.markercluster-1.5.1.tgz#4e352c8cbb9508e6175a20ac29cf179601907c4c"
@@ -743,7 +750,7 @@ leaflet.markercluster@^1.5.1:
     jshint "^2.13.1"
     npm-ci "0.0.2"
 
-leaflet@^1.7.1:
+leaflet@*, leaflet@^1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.7.1.tgz#10d684916edfe1bf41d688a3b97127c0322a2a19"
   integrity sha512-/xwPEBidtg69Q3HlqPdU3DnrXQOvQU/CCHA1tcDQVzOwm91YMYaILjNp7L4Eaw5Z4sOYdbBz6koWyibppd8Zqw==
