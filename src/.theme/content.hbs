@@ -23,6 +23,11 @@
       <div class="col-md-12">
           {{!-- <h1>Mapa: {{frontMatter.title}}</h1> --}}
           <p>{{{content}}}</p>
+          {{#if frontMatter.URL }}
+          <a href="{{frontMatter.URL}}" target="_blank">Enlace a la ficha del mapa {{frontMatter.title}}</a>
+          <iframe title="Ficha del mapa {{frontMatter.title}}" src="{{frontMatter.URL}}?widget=true&headers=false&chrome=false" class="embedded-frame"></iframe>
+          {{/if}}
+          <a href="https://ws168.juntadeandalucia.es/wikigestionC/index.php?title=Mapa_de_Conocimiento_Cr%C3%ADtico" target="_blank">M&aacute;s informaci&oacute;n sobre los Mapa de Conocimiento Cr&iacute;tico en nuestra p&aacute;gina del Wiki de Gesti&oacute;n del Conocimiento.</a>
       </div>
       {{/if}}
       </div>
