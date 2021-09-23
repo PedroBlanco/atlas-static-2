@@ -11,9 +11,11 @@
     mounted: function () {
       var options = {
       // Con un nivel 14 minimizaríamos los errores 503 del servidor, pero no los eliminamos (p.e. suroeste de Linares en nivel 15)
-        maxZoom: 15,
+        maxZoom: 16,
+        minZoom: 7,
         zoomDelta: 0.5,
-        zoomSnap: 0.5
+        zoomSnap: 0.5,
+        zooms: [7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16]
       }
 
       var map = L.map('map', options ).setView([{{frontMatter.latlng}}], {{frontMatter.mapzoom}});
@@ -28,6 +30,8 @@
       var markers = L.markerClusterGroup();
       var stamen_layer_watercolor = new L.StamenTileLayer("watercolor");
       var stamen_layer_tonerlines = new L.StamenTileLayer("toner-hybrid");
+
+      stamen_layer_watercolor.options.maxNativeZoom = 14;
 
       {{#each pages}}
         {{#if frontMatter.latlng}}
