@@ -9,15 +9,38 @@
     },
 
     mounted: function () {
+
+      var scale_options = {
+        position: 'bottomleft',
+        maxWidth: 200,
+        metric: true,
+        imperial: false,
+        updateWhenIdle: false 
+      }
+
+      var zoom_options = {
+        position: 'bottomleft',
+        zoomInTitle: 'Ampliar',
+        zoomOutTitle: 'Reducir'
+      }
+
+      var cluster_options = {
+        showCoverageOnHover: false,
+        {{!-- ,
+        spiderfyOnMaxZoom: false
+        ,
+        disableClusteringAtZoom: false --}}
+      }
+
       var options = {
         zoom: {{frontMatter.mapzoom}},
+        zoomControl: false,
       // Con un nivel 14 minimizaríamos los errores 503 del servidor, pero no los eliminamos (p.e. suroeste de Linares en nivel 15)
-        maxZoom: 16,
+        maxZoom: 17,
         minZoom: 5,
         zoomDelta: 0.5,
         zoomSnap: 0.5,
-        zooms: [5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16],
-        zoomControl:true
+        zooms: [5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17]
       }
 
       {{!-- var map = L.map('map', options ).setView([{{frontMatter.latlng}}], {{frontMatter.mapzoom}}); --}}
@@ -32,19 +55,21 @@
       }).addTo(map);
 */
       var marker;
-      var markers = L.markerClusterGroup();
-      var stamen_layer_watercolor = new L.StamenTileLayer("watercolor");
+      var markers = L.markerClusterGroup( cluster_options );
+      var stamen_layer_watercolor_low = new L.StamenTileLayer("watercolor");
+      var stamen_layer_watercolor_high = new L.StamenTileLayer("watercolor");
       var stamen_layer_tonerlines = new L.StamenTileLayer("toner-hybrid");
 
-      stamen_layer_watercolor.options.maxNativeZoom = 14;
+      stamen_layer_watercolor_low.options.maxNativeZoom = 14;
+      stamen_layer_watercolor_high.options.maxNativeZoom = 17;
 
       {{#each pages}}
-        {{#if frontMatter.latlng}}
+        {{#if frontMatter.loc}}
         {{#if frontMatter.hint}}
         {{#if url}}
 
           marker = L.marker(
-              [{{frontMatter.latlng}}],
+              [{{frontMatter.loc}}],
               { title: '{{frontMatter.hint}}' }
             ).bindPopup ( '<h6><a href="{{url}}">{{frontMatter.hint}}</a><br/><span class="small">Tags: <i>{{frontMatter.tags}}</i></span></h6>' );
           markers.addLayer(marker);
@@ -54,17 +79,74 @@
         {{/if}}
       {{/each}}
 
-      map.addLayer(stamen_layer_watercolor);
+      map.addLayer(stamen_layer_watercolor_low);
+      map.addLayer(stamen_layer_watercolor_high);
       map.addLayer(stamen_layer_tonerlines);
       map.addLayer(markers);
 
-      map.addControl( new L.Control.Search({
+      // Si pongo las opciones de búsqueda al principio me da error al buscar (?!)
+      var search_options = {
         container: 'findbox',
         layer: markers,
         initial: false,
-        collapsed: false
-      }) );
-      //inizialize search control
+        collapsed: false,
+        textErr: 'No se ha podido encontrar ningún mapa',
+        textCancel: 'Cancelar',
+        textPlaceholder: 'p.e. Maquetación',
+        propertyName: 'title',
+        zoom: 16
+      }
+
+      var search_control = new L.Control.Search ( search_options );
+
+      search_control.on('search:locationfound', function(e) {
+		
+        //console.log('search:locationfound', );
+
+        //map.removeLayer(this._markerSearch)
+
+        if ( ! this.buscando ){
+          console.log( 'Buscando: NO?!' );
+          console.log ( this );
+          this.buscando = true;
+          {{!-- $('#findbox .search-button').click(); --}}
+        } else {
+          console.log( 'Buscando:' + this.buscando );
+        }
+
+
+        if ( e.layer.__parent.spiderfy ) {
+          console.log ( 'Cluster?' );
+          console.log ( e.layer );
+          console.log ( e.layer.__parent );
+          e.layer.__parent.spiderfy();
+          e.layer.openPopup();
+        } else {
+          console.log ( 'Marcador?' );
+          e.layer.openPopup();
+        }
+        
+        console.log ( 'He encontrado...' );
+        console.log ( e );
+
+      }).on('search:collapsed', function(e) {
+
+        console.log ( 'TODO: Mover vista a posición inicial?' );
+
+        if ( this.buscando ){
+          this.buscando = false;
+          console.log( 'Buscando:' + this.buscando );
+        } else {
+          console.log( 'No buscando!' );
+        }
+
+      });
+
+      map.addControl( search_control ); //inizialize search control
+
+      L.control.scale ( scale_options ).addTo ( map );
+
+      L.control.zoom ( zoom_options ).addTo ( map );
     }
   });
   </script>

@@ -21,32 +21,34 @@
   <link rel="stylesheet" href="css/leaflet-search.min.css">
   <link rel="stylesheet" href="css/leaflet-search.mobile.min.css">
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
     crossorigin="anonymous"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
     integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" 
     crossorigin="anonymous"></script>
 
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
+  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" 
     crossorigin="anonymous"></script>
 
 
-  <script src="js/leaflet.js"></script>
+  <script type="text/javascript" src="js/leaflet.js"></script>
 
-  <script src="js/leaflet.markercluster.js"></script>
+  <script type="text/javascript" src="js/leaflet.markercluster.js"></script>
 
-  <script src="js/leaflet-search.min.js"></script>
+  <script type="text/javascript" src="js/leaflet-search.min.js"></script>
 
-  <script src="js/leaflet.LimitZoom.js"></script>
-
-  <script src="js/leaflet.ContinuousZoom.js"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+  <script type="text/javascript" src="https://sigdeletras.github.io/Leaflet.Spain.WMS/src/Leaflet.Spain.WMS.js"></script>
 
   <script type="text/javascript" src="https://stamen-maps.a.ssl.fastly.net/js/tile.stamen.js?v1.3.0"></script>
+
+  <script type="text/javascript" src="js/leaflet.LimitZoom.js"></script>
+
+  <script type="text/javascript" src="js/leaflet.ContinuousZoom.js"></script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
 </head>
 
@@ -79,15 +81,34 @@
     },
 
     mounted: function () {
+
+      var scale_options = {
+        position: 'bottomleft',
+        maxWidth: 200,
+        metric: true,
+        imperial: false,
+        updateWhenIdle: false 
+      }
+
+      var zoom_options = {
+        position: 'bottomleft',
+        zoomInTitle: 'Ampliar',
+        zoomOutTitle: 'Reducir'
+      }
+
+      var cluster_options = {
+        showCoverageOnHover: false,
+      }
+
       var options = {
         zoom: 8,
+        zoomControl: false,
       // Con un nivel 14 minimizaríamos los errores 503 del servidor, pero no los eliminamos (p.e. suroeste de Linares en nivel 15)
-        maxZoom: 16,
+        maxZoom: 17,
         minZoom: 5,
         zoomDelta: 0.5,
         zoomSnap: 0.5,
-        zooms: [5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16],
-        zoomControl:true
+        zooms: [5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17]
       }
 
       var map = L.map('map', options ).fitBounds([[34.7711984337,-7.67011449],[39.9592535647,-1.48567791]]);
@@ -100,17 +121,33 @@
       }).addTo(map);
 */
       var marker;
-      var markers = L.markerClusterGroup();
-      var stamen_layer_watercolor = new L.StamenTileLayer("watercolor");
+      var markers = L.markerClusterGroup( cluster_options );
+      var stamen_layer_watercolor_low = new L.StamenTileLayer("watercolor");
+      var stamen_layer_watercolor_high = new L.StamenTileLayer("watercolor");
       var stamen_layer_tonerlines = new L.StamenTileLayer("toner-hybrid");
 
-      stamen_layer_watercolor.options.maxNativeZoom = 14;
+      stamen_layer_watercolor_low.options.maxNativeZoom = 14;
+      stamen_layer_watercolor_high.options.maxNativeZoom = 17;
+
+
+          marker = L.marker(
+              [37.3802139, -5.9931103],
+              { title: 'Actividades, funciones y competencias' }
+            ).bindPopup ( '<h6><a href="/mapas/Actividades,_funciones_y_competencias">Actividades, funciones y competencias</a><br/><span class="small">Tags: <i>Área, Fase 4, Administración General</i></span></h6>' );
+          markers.addLayer(marker);
+
+
+          marker = L.marker(
+              [36.8360391, -2.4634845],
+              { title: 'Actividad: Elevar Informe a la S. G.' }
+            ).bindPopup ( '<h6><a href="/mapas/Actividad__Elevar_Informe_a_la_S__G_">Actividad: Elevar Informe a la S. G.</a><br/><span class="small">Tags: <i>Proceso, Fase 4, Administración General</i></span></h6>' );
+          markers.addLayer(marker);
 
 
           marker = L.marker(
               [36.699219, -6.1508098],
               { title: 'Actualización de procedimientos preventivos' }
-            ).bindPopup ( '<h6><a href="/mapas/Actualización_de_procedimientos_preventivos_">Actualización de procedimientos preventivos</a><br/><span class="small">Tags: <i>Área, Ejecución del plan de acción (del Manual 1.0), Sanidad</i></span></h6>' );
+            ).bindPopup ( '<h6><a href="/mapas/Actualización_de_procedimientos_preventivos_">Actualización de procedimientos preventivos</a><br/><span class="small">Tags: <i>Área, Fase 4, Sanidad</i></span></h6>' );
           markers.addLayer(marker);
 
 
@@ -143,9 +180,30 @@
 
 
           marker = L.marker(
+              [37.8847776, -4.775127],
+              { title: 'Crear un Repositorio Documental Normativo' }
+            ).bindPopup ( '<h6><a href="/mapas/Crear_un_Repositorio_Documental_Normativo">Crear un Repositorio Documental Normativo</a><br/><span class="small">Tags: <i>Organización, Fase 4, Administración General</i></span></h6>' );
+          markers.addLayer(marker);
+
+
+          marker = L.marker(
+              [37.3802139, -5.9931103],
+              { title: 'Evaluación de cursos de formación' }
+            ).bindPopup ( '<h6><a href="/mapas/Evaluación_de_cursos_de_formación">Evaluación de cursos de formación</a><br/><span class="small">Tags: <i>Área, Fase 4, Administración General</i></span></h6>' );
+          markers.addLayer(marker);
+
+
+          marker = L.marker(
               [37.8866752, -4.7826835],
               { title: 'Gestión de propuestas de proyectos hoteleros y apartamentos turísticos' }
             ).bindPopup ( '<h6><a href="/mapas/Gestión_de_propuestas_de_proyectos_hoteleros_y_apartamentos_turísticos">Gestión de propuestas de proyectos hoteleros y apartamentos turísticos</a><br/><span class="small">Tags: <i>Proceso, Fase 0 (del Manual 1.0), Administración General</i></span></h6>' );
+          markers.addLayer(marker);
+
+
+          marker = L.marker(
+              [37.3869618, -5.9875628],
+              { title: 'Gestión forestal sostenible' }
+            ).bindPopup ( '<h6><a href="/mapas/Gestión_forestal_sostenible">Gestión forestal sostenible</a><br/><span class="small">Tags: <i>Organización, Fase 4, Administración General</i></span></h6>' );
           markers.addLayer(marker);
 
 
@@ -171,6 +229,13 @@
 
 
           marker = L.marker(
+              [37.3693308, -5.9585041],
+              { title: 'Justificación de subvenciones' }
+            ).bindPopup ( '<h6><a href="/mapas/Justificación_de_subvenciones">Justificación de subvenciones</a><br/><span class="small">Tags: <i>Proceso, Fase 4, Administración General</i></span></h6>' );
+          markers.addLayer(marker);
+
+
+          marker = L.marker(
               [37.8841488, -4.7841887],
               { title: 'Mantenimiento del inventario del equipamiento informático y telefónico' }
             ).bindPopup ( '<h6><a href="/mapas/Mantenimiento_del_inventario_del_equipamiento_informático_y_telefónico">Mantenimiento del inventario del equipamiento informático y telefónico</a><br/><span class="small">Tags: <i>Proceso, Fase 1 (del Manual 1.0), Administración General</i></span></h6>' );
@@ -185,9 +250,30 @@
 
 
           marker = L.marker(
+              [37.8841488, -4.7841887],
+              { title: 'Maquetación de revista' }
+            ).bindPopup ( '<h6><a href="/mapas/Maquetación_de_revista">Maquetación de revista</a><br/><span class="small">Tags: <i>Proceso, Fase 4, Administración General</i></span></h6>' );
+          markers.addLayer(marker);
+
+
+          marker = L.marker(
               [37.4822431, -5.9436615],
               { title: 'Mecanismos de búsquedas y gestión de candidatos' }
             ).bindPopup ( '<h6><a href="/mapas/Mecanismos_de_búsquedas_y_gestión_de_candidatos">Mecanismos de búsquedas y gestión de candidatos</a><br/><span class="small">Tags: <i>Proceso, Fase 0 (del Manual 1.0), Empleo</i></span></h6>' );
+          markers.addLayer(marker);
+
+
+          marker = L.marker(
+              [37.3802139, -5.9931103],
+              { title: 'Planificación y puesta en marcha de los talleres de formación de dirección' }
+            ).bindPopup ( '<h6><a href="/mapas/Planificación_y_puesta_en_marcha_de_los_talleres_de_formación_de_dirección">Planificación y puesta en marcha de los talleres de formación de dirección</a><br/><span class="small">Tags: <i>Proceso, Fase 4, Administración General</i></span></h6>' );
+          markers.addLayer(marker);
+
+
+          marker = L.marker(
+              [37.3752813, -5.9638453],
+              { title: 'Plan de Actuación de Zona. Planes de Centro de los Centros afectados.' }
+            ).bindPopup ( '<h6><a href="/mapas/Plan_de_Actuación_de_Zona__Planes_de_Centro_de_los_Centros_afectados_">Plan de Actuación de Zona. Planes de Centro de los Centros afectados.</a><br/><span class="small">Tags: <i>Organización, Fase 4, Administración General</i></span></h6>' );
           markers.addLayer(marker);
 
 
@@ -206,9 +292,37 @@
 
 
           marker = L.marker(
+              [37.3869618, -5.9875628],
+              { title: 'Procedimiento operativo' }
+            ).bindPopup ( '<h6><a href="/mapas/Procedimiento_operativo">Procedimiento operativo</a><br/><span class="small">Tags: <i>Proceso, Fase 4, Administración General</i></span></h6>' );
+          markers.addLayer(marker);
+
+
+          marker = L.marker(
+              [37.18288, -3.6020075],
+              { title: 'Procesos de Facturación de contratación menor' }
+            ).bindPopup ( '<h6><a href="/mapas/Procesos_de_Facturación_de_contratación_menor_">Procesos de Facturación de contratación menor</a><br/><span class="small">Tags: <i>Proceso, Fase 4, Administración General</i></span></h6>' );
+          markers.addLayer(marker);
+
+
+          marker = L.marker(
               [37.8841488, -4.7841887],
               { title: 'Publicación de noticias y avisos en la Intranet' }
             ).bindPopup ( '<h6><a href="/mapas/Publicación_de_noticias_y_avisos_en_la_Intranet">Publicación de noticias y avisos en la Intranet</a><br/><span class="small">Tags: <i>Proceso, Fase 1 (del Manual 1.0), Administración General</i></span></h6>' );
+          markers.addLayer(marker);
+
+
+          marker = L.marker(
+              [37.2599688, -6.9573174],
+              { title: 'Recepción por parte del contribuyente de las  notificaciones y requerimientos' }
+            ).bindPopup ( '<h6><a href="/mapas/Recepción_por_parte_del_contribuyente_de_las__notificaciones_y_requerimientos">Recepción por parte del contribuyente de las  notificaciones y requerimientos</a><br/><span class="small">Tags: <i>Proceso, Fase 4, Administración General</i></span></h6>' );
+          markers.addLayer(marker);
+
+
+          marker = L.marker(
+              [37.3802139, -5.9931103],
+              { title: 'Reclamaciones y sanciones' }
+            ).bindPopup ( '<h6><a href="/mapas/Reclamaciones_y_sanciones">Reclamaciones y sanciones</a><br/><span class="small">Tags: <i>Proceso, Fase 4, Administración General</i></span></h6>' );
           markers.addLayer(marker);
 
 
@@ -227,9 +341,9 @@
 
 
           marker = L.marker(
-              [37.8841488,-4.7841887],
-              { title: 'Publicar noticias y avisos en la Intranet' }
-            ).bindPopup ( '<h6><a href="/mapas/test1">Publicar noticias y avisos en la Intranet</a><br/><span class="small">Tags: <i>informatica, proceso, fase 1</i></span></h6>' );
+              [37.8773685, -4.7876985],
+              { title: 'Tramitación de proceso' }
+            ).bindPopup ( '<h6><a href="/mapas/Tramitación_de_proceso">Tramitación de proceso</a><br/><span class="small">Tags: <i>Proceso, Fase 4, Administración General</i></span></h6>' );
           markers.addLayer(marker);
 
 
@@ -237,6 +351,13 @@
               [36.8238722, -2.4433644],
               { title: 'Técnico de Prevención de Riesgos Laborales' }
             ).bindPopup ( '<h6><a href="/mapas/Técnico_de_Prevención_de_Riesgos_Laborales">Técnico de Prevención de Riesgos Laborales</a><br/><span class="small">Tags: <i>Puesto, Fase 4 (del 1º Curso de Conocimiento Crítico), Administración General</i></span></h6>' );
+          markers.addLayer(marker);
+
+
+          marker = L.marker(
+              [36.7231793, -4.4482539],
+              { title: 'Área Asistencial Anatomía Patológica' }
+            ).bindPopup ( '<h6><a href="/mapas/Área_Asistencial_Anatomía_Patológica">Área Asistencial Anatomía Patológica</a><br/><span class="small">Tags: <i>Área, Fase 4, Sanidad</i></span></h6>' );
           markers.addLayer(marker);
 
 
@@ -268,17 +389,73 @@
           markers.addLayer(marker);
 
 
-      map.addLayer(stamen_layer_watercolor);
+      map.addLayer(stamen_layer_watercolor_low);
+      map.addLayer(stamen_layer_watercolor_high);
       map.addLayer(stamen_layer_tonerlines);
       map.addLayer(markers);
 
-      map.addControl( new L.Control.Search({
+      // Si pongo las opciones de búsqueda al principio me da error al buscar (?!)
+      var search_options = {
         container: 'findbox',
         layer: markers,
         initial: false,
-        collapsed: false
-      }) );
-      //inizialize search control
+        collapsed: false,
+        textErr: 'No se ha podido encontrar ningún mapa',
+        textCancel: 'Cancelar',
+        textPlaceholder: 'p.e. Maquetación',
+        propertyName: 'title',
+        zoom: 16
+      }
+
+      var search_control = new L.Control.Search ( search_options );
+
+      search_control.on('search:locationfound', function(e) {
+		
+        //console.log('search:locationfound', );
+
+        //map.removeLayer(this._markerSearch)
+
+        if ( ! this.buscando ){
+          console.log( 'Buscando: NO?!' );
+          console.log ( this );
+          this.buscando = true;
+        } else {
+          console.log( 'Buscando:' + this.buscando );
+        }
+
+
+        if ( e.layer.__parent.spiderfy ) {
+          console.log ( 'Cluster?' );
+          console.log ( e.layer );
+          console.log ( e.layer.__parent );
+          e.layer.__parent.spiderfy();
+          e.layer.openPopup();
+        } else {
+          console.log ( 'Marcador?' );
+          e.layer.openPopup();
+        }
+        
+        console.log ( 'He encontrado...' );
+        console.log ( e );
+
+      }).on('search:collapsed', function(e) {
+
+        console.log ( 'TODO: Mover vista a posición inicial?' );
+
+        if ( this.buscando ){
+          this.buscando = false;
+          console.log( 'Buscando:' + this.buscando );
+        } else {
+          console.log( 'No buscando!' );
+        }
+
+      });
+
+      map.addControl( search_control ); //inizialize search control
+
+      L.control.scale ( scale_options ).addTo ( map );
+
+      L.control.zoom ( zoom_options ).addTo ( map );
     }
   });
   </script>
