@@ -1,6 +1,6 @@
 {
   "name": "atlas-static-2",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generador estático y ligero del Atlas de Conocimiento Crítico",
   "main": "as2.js",
   "repository": "https://github.com/PedroBlanco/atlas-static-2",
