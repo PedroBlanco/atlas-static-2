@@ -32,6 +32,24 @@
         disableClusteringAtZoom: false --}}
       }
 
+      var wfstPointOptions = {
+        crs: L.CRS.EPSG4326,
+        showExisting: true,
+        geometryField: 'geom',
+        url: `http://localhost:8080/geoserver/wfs`,
+        typeNS: 'test',
+        typeName: 'test',
+        maxFeatures: 90,
+        opacity: 1,
+        style: function (layer) {
+          // you can use if statemt etc
+          return {
+            color: 'black',
+            weight: 1
+          }
+        },
+      };
+
       var options = {
         zoom: {{frontMatter.mapzoom}},
         zoomControl: false,
@@ -54,12 +72,33 @@
 //        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
 */
+      // Grupo de marcadores
       var marker;
       var markers = L.markerClusterGroup( cluster_options );
+
+      // Capas de fondo
       var stamen_layer_watercolor_low = new L.StamenTileLayer("watercolor");
       var stamen_layer_watercolor_high = new L.StamenTileLayer("watercolor");
-      var stamen_layer_tonerlines = new L.StamenTileLayer("toner-hybrid");
 
+      // Capas de etiquetas
+      var stamen_layer_tonerlines = new L.StamenTileLayer("toner-hybrid");
+      {{!-- var etiquetas_layer = SPAIN_NGBE; --}}
+      {{!-- var etiquetas_layer = ANDALUCIA_NGA_INSPIRE; --}}
+
+
+      {{!-- var ANDALUCIA_NGA = L.WFS({
+          url: 'https://www.ideandalucia.es/wfs-nga/services',
+          typeNS: 'app',
+          typeName: 'Entidad',
+          typeNSName: 'app',
+          style: {
+              color: 'blue',
+              weight: 2
+          }
+      }); --}}
+
+      {{!-- var etiquetas_layer = ANDALUCIA_NGA; --}}
+      
       stamen_layer_watercolor_low.options.maxNativeZoom = 14;
       stamen_layer_watercolor_high.options.maxNativeZoom = 17;
 
@@ -82,6 +121,9 @@
       map.addLayer(stamen_layer_watercolor_low);
       map.addLayer(stamen_layer_watercolor_high);
       map.addLayer(stamen_layer_tonerlines);
+      {{!-- map.addLayer(etiquetas_layer); --}}
+      {{!-- etiquetas_layer.addTo(map); --}}
+
       map.addLayer(markers);
 
       // Si pongo las opciones de búsqueda al principio me da error al buscar (?!)

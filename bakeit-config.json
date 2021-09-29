@@ -43,7 +43,9 @@
       { "src": "./node_modules/leaflet-search/dist/leaflet-search.min.css", "dst": "./dist/css/leaflet-search.min.css" },
       { "src": "./node_modules/leaflet-search/dist/leaflet-search.mobile.min.css", "dst": "./dist/css/leaflet-search.mobile.min.css" },
       { "src": "./js/leaflet.LimitZoom.js", "dst": "./dist/js/leaflet.LimitZoom.js" },
-      { "src": "./js/leaflet.ContinuousZoom.js", "dst": "./dist/js/leaflet.ContinuousZoom.js" }
+      { "src": "./js/leaflet.ContinuousZoom.js", "dst": "./dist/js/leaflet.ContinuousZoom.js" },
+      { "src": "./node_modules/leaflet-wfst/dist/leaflet-wfst.src.js", "dst": "./dist/js/leaflet-wfst.min.js" },
+      { "src": "./js/Nomenclator.js", "dst": "./dist/js/Nomenclator.js" }
     ]
   }
 }

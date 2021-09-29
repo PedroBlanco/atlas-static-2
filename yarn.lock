@@ -742,6 +742,11 @@ leaflet-search@^3.0.2:
   dependencies:
     leaflet "*"
 
+leaflet-wfst@^2.0.1-beta.27:
+  version "2.0.1-beta.27"
+  resolved "https://registry.yarnpkg.com/leaflet-wfst/-/leaflet-wfst-2.0.1-beta.27.tgz#03d648318ba51d3ec93e59ee194018df65038d23"
+  integrity sha512-zqs+ooIw9mjqnUPytxt3nWVKda02ceWt2yR9FMNiZxRv/hNKgZq6/dvirT1TMWlFmULLIfkCKik+zIrjGIVNjQ==
+
 leaflet.markercluster@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/leaflet.markercluster/-/leaflet.markercluster-1.5.1.tgz#4e352c8cbb9508e6175a20ac29cf179601907c4c"
