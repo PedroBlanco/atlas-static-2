@@ -99,11 +99,14 @@
 
       var search_control = new L.Control.Search ( search_options );
 
+      var _timeout = 500;
+      console.debug ( 'Configuramos retardo a ' + _timeout + 'ms' );
+
       search_control.on('search:locationfound', function(e) {
 
       setTimeout ( function() {
         
-        console.log('Introduciendo retardo...');
+        console.debug('Introduciendo retardo...');
 		
         //console.log('search:locationfound', );
 
@@ -111,7 +114,7 @@
 
         if ( ! this.buscando ){
           console.log( 'Buscando: NO?!' );
-          console.log ( this );
+          {{!-- console.log ( this ); --}}
           this.buscando = true;
           {{!-- $('#findbox .search-button').click(); --}}
         } else {
@@ -133,7 +136,7 @@
         console.log ( 'He encontrado...' );
         console.log ( e );
 
-      }, 500 );
+      }, _timeout );
       }).on('search:collapsed', function(e) {
 
         console.log ( 'TODO: Mover vista a posición inicial?' );
