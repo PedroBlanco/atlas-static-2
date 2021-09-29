@@ -410,6 +410,10 @@
       var search_control = new L.Control.Search ( search_options );
 
       search_control.on('search:locationfound', function(e) {
+
+      setTimeout ( function() {
+        
+        console.log('Introduciendo retardo...');
 		
         //console.log('search:locationfound', );
 
@@ -438,6 +442,7 @@
         console.log ( 'He encontrado...' );
         console.log ( e );
 
+      }, 500 );
       }).on('search:collapsed', function(e) {
 
         console.log ( 'TODO: Mover vista a posición inicial?' );
@@ -450,6 +455,15 @@
         }
 
       });
+
+      // Comprobamos qué evento se dispara el último: zoomend o moveend
+      map.on('zoomend', function (e) {
+        console.debug('Mapa: zoomend');
+      });
+      map.on('moveend', function (e) {
+        console.debug('Mapa: moveend');
+      });
+      // Parece que moveend se dispara siempre y además se dispara siempre el último
 
       map.addControl( search_control ); //inizialize search control
 
