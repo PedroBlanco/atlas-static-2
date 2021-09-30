@@ -10,6 +10,8 @@
 
     mounted: function () {
 
+      var _attribution = '';
+
       var scale_options = {
         position: 'bottomleft',
         maxWidth: 200,
@@ -51,8 +53,9 @@
       };
 
       var options = {
-        zoom: {{frontMatter.mapzoom}},
+        {{!-- attributionControl: false, --}}
         zoomControl: false,
+        zoom: {{frontMatter.mapzoom}},
       // Con un nivel 14 minimizaríamos los errores 503 del servidor, pero no los eliminamos (p.e. suroeste de Linares en nivel 15)
         maxZoom: 17,
         minZoom: 5,
@@ -77,11 +80,14 @@
       var markers = L.markerClusterGroup( cluster_options );
 
       // Capas de fondo
-      var stamen_layer_watercolor_low = new L.StamenTileLayer("watercolor");
-      var stamen_layer_watercolor_high = new L.StamenTileLayer("watercolor");
+      var stamen_layer_watercolor_low = new L.StamenTileLayer("watercolor", {attribution: '', attributionControl: false});
+      var stamen_layer_watercolor_high = new L.StamenTileLayer("watercolor", {attribution: '', attributionControl: false});
+      _attribution += 'Watercolor &amp; Toner tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>.';
+      _attribution += 'Watercolor data by <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.';
 
       // Capas de etiquetas
-      var stamen_layer_tonerlines = new L.StamenTileLayer("toner-hybrid");
+      var stamen_layer_tonerlines = new L.StamenTileLayer("toner-hybrid", {attribution: '', attributionControl: false});
+      _attribution += 'Toner data by <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://www.openstreetmap.org/copyright">ODbL</a>.';
       {{!-- var etiquetas_layer = SPAIN_NGBE; --}}
       {{!-- var etiquetas_layer = ANDALUCIA_NGA_INSPIRE; --}}
 
@@ -126,6 +132,11 @@
 
       map.addLayer(markers);
 
+      var attribution_options = {
+        prefix: 'Leaflet.',
+        position: 'bottomright'
+      }
+
       // Si pongo las opciones de búsqueda al principio me da error al buscar (?!)
       var search_options = {
         container: 'findbox',
@@ -141,7 +152,7 @@
 
       var search_control = new L.Control.Search ( search_options );
 
-      var _timeout = 500;
+      var _timeout = 600;
       console.debug ( 'Configuramos retardo a ' + _timeout + 'ms' );
 
       search_control.on('search:locationfound', function(e) {
@@ -203,9 +214,15 @@
 
       map.addControl( search_control ); //inizialize search control
 
+      {{!-- L.control.attribution( attribution_options ).removeAttribution('Map tiles by <a href="http://stamen.com/">Stamen Design</a>, ').addAttribution( _attribution ).addTo ( map ); --}}
+
+      {{!-- console.log ( _attribution ); --}}
+
       L.control.scale ( scale_options ).addTo ( map );
 
       L.control.zoom ( zoom_options ).addTo ( map );
+
+      {{!-- console.log( map ); --}}
     }
   });
   </script>
