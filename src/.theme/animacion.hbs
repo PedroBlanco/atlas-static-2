@@ -43,6 +43,8 @@
       
       stamen_layer_watercolor_low.options.maxNativeZoom = 14;
       stamen_layer_watercolor_high.options.maxNativeZoom = 17;
+      {{!-- Poniendo minNativeZoom a 9 se consigue mejor definición, pero si hacemos zoom hacia afuera, pedimos demasiados datos y se notan las teselas --}}
+      {{!-- stamen_layer_watercolor_high.options.minNativeZoom = 9; --}}
 
       {{#each pages}}
         {{#if frontMatter.loc}}
