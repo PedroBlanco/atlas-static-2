@@ -1,0 +1,135 @@
+<template>
+  <div id="map" class="mapstyle"></div>
+
+  <script>
+  var app = new Vue({
+    el: '#map',
+    
+    data: {
+    },
+
+    mounted: function () {
+
+      var _attribution = '';
+
+      var scale_options = {
+        position: 'bottomleft',
+        maxWidth: 200,
+        metric: true,
+        imperial: false,
+        updateWhenIdle: false 
+      }
+
+      var zoom_options = {
+        position: 'bottomleft',
+        zoomInTitle: 'Ampliar',
+        zoomOutTitle: 'Reducir'
+      }
+
+      var cluster_options = {
+        showCoverageOnHover: false,
+        {{!-- ,
+        spiderfyOnMaxZoom: false
+        ,
+        disableClusteringAtZoom: false --}}
+      }
+
+      var wfstPointOptions = {
+        crs: L.CRS.EPSG4326,
+        showExisting: true,
+        geometryField: 'geom',
+        url: `http://localhost:8080/geoserver/wfs`,
+        typeNS: 'test',
+        typeName: 'test',
+        maxFeatures: 90,
+        opacity: 1,
+        style: function (layer) {
+          // you can use if statemt etc
+          return {
+            color: 'black',
+            weight: 1
+          }
+        },
+      };
+
+      var options = {
+        {{!-- attributionControl: false, --}}
+        zoomControl: false,
+        zoom: {{frontMatter.mapzoom}},
+      // Con un nivel 14 minimizaríamos los errores 503 del servidor, pero no los eliminamos (p.e. suroeste de Linares en nivel 15)
+        maxZoom: 17,
+        minZoom: 5,
+        zoomDelta: 0.5,
+        zoomSnap: 0.5,
+        zooms: [5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17]
+      }
+
+      {{!-- var map = L.map('map', options ).setView([{{frontMatter.latlng}}], {{frontMatter.mapzoom}}); --}}
+      {{!-- var map = L.map('map', options ).setView([{{frontMatter.latlng}}]); --}}
+      var map = L.map('map', options ).fitBounds([[{{frontMatter.corner_NW}}],[{{frontMatter.corner_SE}}]]);
+
+      // Grupo de marcadores
+      var marker;
+      var markers = L.markerClusterGroup( cluster_options );
+
+      // Capas de fondo
+      var stamen_layer_watercolor_low = new L.StamenTileLayer("watercolor", {attribution: '', attributionControl: false});
+      var stamen_layer_watercolor_high = new L.StamenTileLayer("watercolor", {attribution: '', attributionControl: false});
+      _attribution += 'Watercolor &amp; Toner tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>.';
+      _attribution += 'Watercolor data by <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.';
+
+      // Capas de etiquetas
+      var stamen_layer_tonerlines = new L.StamenTileLayer("toner-hybrid", {attribution: '', attributionControl: false});
+      _attribution += 'Toner data by <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://www.openstreetmap.org/copyright">ODbL</a>.';
+      
+      stamen_layer_watercolor_low.options.maxNativeZoom = 14;
+      stamen_layer_watercolor_high.options.maxNativeZoom = 17;
+
+      {{#each pages}}
+        {{#if frontMatter.loc}}
+        {{#if frontMatter.hint}}
+        {{#if url}}
+
+          marker = L.marker(
+              [{{frontMatter.loc}}],
+              { title: '{{frontMatter.hint}}' }
+            ).bindPopup ( '<h6><a href="{{url}}">{{frontMatter.hint}}</a><br/><span class="small">Tags: <i>{{frontMatter.tags}}</i></span></h6>' );
+          markers.addLayer(marker);
+
+        {{/if}}  
+        {{/if}}
+        {{/if}}
+      {{/each}}
+
+      map.addLayer(stamen_layer_watercolor_low);
+      map.addLayer(stamen_layer_watercolor_high);
+      map.addLayer(stamen_layer_tonerlines);
+      {{!-- map.addLayer(etiquetas_layer); --}}
+      {{!-- etiquetas_layer.addTo(map); --}}
+
+      map.addLayer(markers);
+
+      var attribution_options = {
+        prefix: 'Leaflet.',
+        position: 'bottomright'
+      }
+
+      // Comprobamos qué evento se dispara el último: zoomend o moveend
+      map.on('zoomend', function (e) {
+        console.debug('Mapa: zoomend');
+      });
+      map.on('moveend', function (e) {
+        console.debug('Mapa: moveend');
+      });
+      // Parece que moveend se dispara siempre y además se dispara siempre el último
+
+       {{!-- L.control.attribution( attribution_options ).removeAttribution('Map tiles by <a href="http://stamen.com/">Stamen Design</a>, ').addAttribution( _attribution ).addTo ( map ); --}}
+
+      L.control.scale ( scale_options ).addTo ( map );
+
+      L.control.zoom ( zoom_options ).addTo ( map );
+    }
+  });
+  </script>
+</template>
+

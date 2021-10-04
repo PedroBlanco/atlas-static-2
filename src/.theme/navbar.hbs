@@ -10,7 +10,11 @@
           {{#each config.menuItems}}
           <a class="nav-item nav-link" href="{{url}}">{{name}}</a>
           {{/each}}
+          {{#if frontMatter.search}}
           <div id="findbox"></div>
+          {{!-- {{else}}
+          <div class="nav-item nav-link" >Búsqueda: {{frontMatter.search}}</div> --}}
+          {{/if}}
         </div>
       </div>
   </nav>
