@@ -12,57 +12,15 @@
 
       var _attribution = '';
 
-      var scale_options = {
-        position: 'bottomleft',
-        maxWidth: 200,
-        metric: true,
-        imperial: false,
-        updateWhenIdle: false 
-      }
+      var scale_options = init_scale_options ();
 
-      var zoom_options = {
-        position: 'bottomleft',
-        zoomInTitle: 'Ampliar',
-        zoomOutTitle: 'Reducir'
-      }
+      var zoom_options = init_zoom_options ();
 
-      var cluster_options = {
-        showCoverageOnHover: false,
-        {{!-- ,
-        spiderfyOnMaxZoom: false
-        ,
-        disableClusteringAtZoom: false --}}
-      }
+      var cluster_options = init_cluster_options ();
 
-      var wfstPointOptions = {
-        crs: L.CRS.EPSG4326,
-        showExisting: true,
-        geometryField: 'geom',
-        url: `http://localhost:8080/geoserver/wfs`,
-        typeNS: 'test',
-        typeName: 'test',
-        maxFeatures: 90,
-        opacity: 1,
-        style: function (layer) {
-          // you can use if statemt etc
-          return {
-            color: 'black',
-            weight: 1
-          }
-        },
-      };
+      var wfstPointOptions = init_wfstPointOptions ();
 
-      var options = {
-        {{!-- attributionControl: false, --}}
-        zoomControl: false,
-        zoom: {{frontMatter.mapzoom}},
-      // Con un nivel 14 minimizaríamos los errores 503 del servidor, pero no los eliminamos (p.e. suroeste de Linares en nivel 15)
-        maxZoom: 17,
-        minZoom: 5,
-        zoomDelta: 0.5,
-        zoomSnap: 0.5,
-        zooms: [5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17]
-      }
+      var options = init_map_options ( {{frontMatter.mapzoom}} );
 
       {{!-- var map = L.map('map', options ).setView([{{frontMatter.latlng}}], {{frontMatter.mapzoom}}); --}}
       {{!-- var map = L.map('map', options ).setView([{{frontMatter.latlng}}]); --}}
@@ -112,7 +70,7 @@
         {{#if frontMatter.loc}}
         {{#if frontMatter.hint}}
         {{#if url}}
-
+          {{!-- TODO: Implementar el popup mediante plantilla como en main.hbs se hace con navbar?! --}}
           marker = L.marker(
               [{{frontMatter.loc}}],
               { title: '{{frontMatter.hint}}' }
@@ -132,26 +90,14 @@
 
       map.addLayer(markers);
 
-      var attribution_options = {
-        prefix: 'Leaflet.',
-        position: 'bottomright'
-      }
+      var attribution_options = init_attribution_options ();
 
       // Si pongo las opciones de búsqueda al principio me da error al buscar (?!)
-      var search_options = {
-        container: 'findbox',
-        layer: markers,
-        initial: false,
-        collapsed: false,
-        textErr: 'No se ha podido encontrar ningún mapa',
-        textCancel: 'Cancelar',
-        textPlaceholder: 'p.e. Maquetación',
-        propertyName: 'title',
-        zoom: 16
-      }
+      var search_options = init_search_options ();
 
       var search_control = new L.Control.Search ( search_options );
 
+      // Tal vez podría meter _timeout en las opciones de búsqueda
       var _timeout = 600;
       console.debug ( 'Configuramos retardo a ' + _timeout + 'ms' );
 
