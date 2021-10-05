@@ -1,7 +1,7 @@
 ---
 template: map
 title: Mapas
-search: true
+search: false
 back-link: false
 latlng: 37.46335,-4.575648
 corner_NW: 34.7711984337,-7.67011449

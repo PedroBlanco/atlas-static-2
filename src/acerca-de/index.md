@@ -1,5 +1,6 @@
 ---
 title: Acerca del Atlas de Conocimiento Crítico
+back-link: true
 search: false
 youtube: lwbcvxzeXUI
 ---
