@@ -73,10 +73,10 @@ function init_attribution_options () {
 }
 
 // TODO: ¿Podría/debería implementar aquí las diferentes búsquedas? Títulos, etiquetas, ...
-function init_search_options () {
+function init_search_options ( _layer ) {
     return {
         container: 'findbox',
-        layer: markers,
+        layer: _layer,
         initial: false,
         collapsed: false,
         textErr: 'No se ha podido encontrar ningún mapa',
