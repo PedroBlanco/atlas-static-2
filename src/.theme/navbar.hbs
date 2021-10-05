@@ -1,14 +1,14 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
       {{!-- <a class="navbar-brand text-light" href="/">{{config.title}}</a> --}}
-      {{#if frontMatter.back-link}}
-      <a id="back-link" href="javascript:history.back()">
+      {{#if frontMatter.back_link}}
+      <a id="back_link" href="javascript:history.back()">
         <span class="carousel-control-prev-icon"></span>&nbsp;&nbsp;
       </a>
       <script>
-        // Desde https://stackoverflow.com/questions/8814472/how-to-make-an-html-back-link
+        // Desde https://stackoverflow.com/questions/8814472/how-to-make-an-html-back_link
         // Respuesta: https://stackoverflow.com/posts/46163215
-          var element = document.getElementById('back-link');
+          var element = document.getElementById('back_link');
 
         // Provide a standard href to facilitate standard browser features such as 
         //  - Hover to see link
