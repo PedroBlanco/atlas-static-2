@@ -2,6 +2,7 @@
 template: animacion
 title: Mapas
 search: false
+cluster: true
 back_link: false
 time_animation: true
 latlng: 37.46335,-4.575648
