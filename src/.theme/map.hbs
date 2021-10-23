@@ -22,6 +22,8 @@
 
       var options = init_map_options ( {{frontMatter.mapzoom}} );
 
+      var icon_oil_drop = init_icon_oil_drop ();
+
       {{!-- var map = L.map('map', options ).setView([{{frontMatter.latlng}}], {{frontMatter.mapzoom}}); --}}
       {{!-- var map = L.map('map', options ).setView([{{frontMatter.latlng}}]); --}}
       var map = L.map('map', options ).fitBounds([[{{frontMatter.corner_NW}}],[{{frontMatter.corner_SE}}]]);
@@ -73,7 +75,10 @@
           {{!-- TODO: Implementar el popup mediante plantilla como en main.hbs se hace con navbar?! --}}
           marker = L.marker(
               [{{frontMatter.loc}}],
-              { title: '{{frontMatter.hint}}' }
+              {
+                title: '{{frontMatter.hint}}',
+                icon: icon_oil_drop
+              }
             ).bindPopup ( '<h6><a href="{{url}}">{{frontMatter.hint}}</a><br/><span class="small">Tags: <i>{{frontMatter.tags}}</i></span></h6>' );
           markers.addLayer(marker);
 

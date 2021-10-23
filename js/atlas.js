@@ -1,5 +1,7 @@
 // Funciones y datos comunes del atlas
 
+// Suponemos que ya hemos cargado Leaflet
+
 console.log ('Iniciando scripts de Atlas...');
 
 function init_scale_options () {
@@ -85,4 +87,19 @@ function init_search_options ( _layer ) {
         propertyName: 'title',
         zoom: 16
     };
+}
+
+function init_icon_oil_drop ( ) {
+    var _icon = 'images/marker-oil-drop-fit.png';
+    var _shadow = 'images/marker-oil-drop-fit-shadow.png';
+
+    return L.icon ({
+        iconUrl: _icon,
+        iconSize: [25,41],
+        iconAnchor: [12,39],
+        shadowUrl: _shadow,
+        shadowSize: [41,41],
+        shadowAnchor: [30,37],
+        popupAnchor: [1,-33]
+    });
 }
