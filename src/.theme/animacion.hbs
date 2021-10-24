@@ -119,7 +119,7 @@
         start_animation ( marker_array );
       }).addTo(map);
 
-      L.easyButton( '<strong>?</strong>', function(){
+      {{!-- L.easyButton( '<strong>?</strong>', function(){
         var _caja = map.getBounds();
         console.log ('Caja:');
         console.log (_caja);
@@ -129,7 +129,7 @@
           'Caja.NE: ' + _caja._northEast  + '\n' +
           'Caja.SW: ' + _caja._southWest
         );
-      }).addTo(map);
+      }).addTo(map); --}}
 
       {{!-- L.Control.TimeDimension ().addTo ( map ); --}}
     }
