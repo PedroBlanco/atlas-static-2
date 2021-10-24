@@ -4,8 +4,8 @@ title: Mapas
 search: true
 cluster: true
 back_link: false
-latlng: 37.46335,-4.575648
-corner_NW: 34.7711984337,-7.67011449
-corner_SE: 39.9592535647,-1.48567791
+latlng: 37.36796,-4.564819
+corner_NW: 38.728362,-7.547607
+corner_SE: 35.982437,-1.582031
 mapzoom: 8
 ---
