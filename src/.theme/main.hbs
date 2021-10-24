@@ -28,7 +28,10 @@
   <link rel="stylesheet" href="css/leaflet-search.min.css">
   <link rel="stylesheet" href="css/leaflet-search.mobile.min.css">
   {{/if}}
-
+  {{#if frontMatter.time_animation}}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+  {{/if}}
+  
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
     crossorigin="anonymous"></script>
@@ -68,6 +71,10 @@
   <script type="text/javascript" src="js/leaflet.ContinuousZoom.js"></script>
 
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+
+  {{#if frontMatter.time_animation}}
+  <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+  {{/if}}
 
   <script type="text/javascript" src="js/atlas.js"></script>
 

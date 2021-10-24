@@ -22,9 +22,10 @@
 
       var options = init_map_options ( {{frontMatter.mapzoom}} );
 
+      var icon_oil_drop = init_icon_oil_drop ();
+
       {{!-- var map = L.map('map', options ).setView([{{frontMatter.latlng}}], {{frontMatter.mapzoom}}); --}}
       {{!-- var map = L.map('map', options ).setView([{{frontMatter.latlng}}]); --}}
-
       var map = L.map('map', options ).fitBounds([[{{frontMatter.corner_NW}}],[{{frontMatter.corner_SE}}]]);
 
       // Grupo de marcadores
@@ -46,21 +47,42 @@
       {{!-- Poniendo minNativeZoom a 9 se consigue mejor definición, pero si hacemos zoom hacia afuera, pedimos demasiados datos y se notan las teselas --}}
       {{!-- stamen_layer_watercolor_high.options.minNativeZoom = 9; --}}
 
-      {{#each pages}}
-        {{#if frontMatter.loc}}
-        {{#if frontMatter.hint}}
-        {{#if url}}
+      function start_animation () {
+        map.addLayer(markers);
 
-          marker = L.marker(
-              [{{frontMatter.loc}}],
-              { title: '{{frontMatter.hint}}' }
-            ).bindPopup ( '<h6><a href="{{url}}">{{frontMatter.hint}}</a><br/><span class="small">Tags: <i>{{frontMatter.tags}}</i></span></h6>' );
-          markers.addLayer(marker);
+        var _delay = 0;
+        var _inc_delay = 250;
 
-        {{/if}}  
-        {{/if}}
-        {{/if}}
-      {{/each}}
+        {{#each pages}}
+          {{#if frontMatter.loc}}
+          {{#if frontMatter.hint}}
+          {{#if url}}
+          _delay += _inc_delay;
+          setTimeout ( function () {
+            marker = L.marker(
+                [{{frontMatter.loc}}],
+                {
+                  title: '{{frontMatter.hint}}',
+                  icon: icon_oil_drop
+                }
+              ).bindPopup (
+                '<h6><a href="{{url}}">{{frontMatter.hint}}</a>'+
+                '<br/>'+
+                '<span class="small">Etiquetas: <i>{{frontMatter.tags}}</i></span></h6>'
+                );
+          
+            console.log('Espero...' + _delay );
+            markers.addLayer(marker);
+            console.log('Añado "{{frontMatter.hint}}"');
+          }, _delay );
+
+
+          {{/if}}  
+          {{/if}}
+          {{/if}}
+        {{/each}}
+
+      }
 
       map.addLayer(stamen_layer_watercolor_low);
       map.addLayer(stamen_layer_watercolor_high);
@@ -68,7 +90,7 @@
       {{!-- map.addLayer(etiquetas_layer); --}}
       {{!-- etiquetas_layer.addTo(map); --}}
 
-      map.addLayer(markers);
+      // map.addLayer(markers);
 
       var attribution_options = init_attribution_options ();
 
@@ -86,6 +108,22 @@
       L.control.scale ( scale_options ).addTo ( map );
 
       L.control.zoom ( zoom_options ).addTo ( map );
+
+      L.easyButton( '<strong>&#9658;</strong>', function(){
+        start_animation ();
+      }).addTo(map);
+
+      L.easyButton( '<strong>?</strong>', function(){
+        var _caja = map.getBounds();
+        console.log ('Caja:');
+        console.log (_caja);
+        alert (
+          'Centro: '+ map.getCenter() + '\n' +
+          'Zoom: ' + map.getZoom() + '\n' +
+          'Caja.NE: ' + _caja._northEast  + '\n' +
+          'Caja.SW: ' + _caja._southWest
+        );
+      }).addTo(map);
 
       {{!-- L.Control.TimeDimension ().addTo ( map ); --}}
     }
