@@ -47,18 +47,12 @@
       {{!-- Poniendo minNativeZoom a 9 se consigue mejor definición, pero si hacemos zoom hacia afuera, pedimos demasiados datos y se notan las teselas --}}
       {{!-- stamen_layer_watercolor_high.options.minNativeZoom = 9; --}}
 
-      function start_animation () {
-        map.addLayer(markers);
-
-        var _delay = 0;
-        var _inc_delay = 250;
+      const marker_array = [];
 
         {{#each pages}}
           {{#if frontMatter.loc}}
           {{#if frontMatter.hint}}
           {{#if url}}
-          _delay += _inc_delay;
-          setTimeout ( function () {
             marker = L.marker(
                 [{{frontMatter.loc}}],
                 {
@@ -69,12 +63,9 @@
                 '<h6><a href="{{url}}">{{frontMatter.hint}}</a>'+
                 '<br/>'+
                 '<span class="small">Etiquetas: <i>{{frontMatter.tags}}</i></span></h6>'
-                );
+              );
           
-            console.log('Espero...' + _delay );
-            markers.addLayer(marker);
-            console.log('Añado "{{frontMatter.hint}}"');
-          }, _delay );
+          marker_array.push ( marker );
 
 
           {{/if}}  
@@ -82,6 +73,21 @@
           {{/if}}
         {{/each}}
 
+      function start_animation ( _array ) {
+        markers.clearLayers();
+        map.addLayer(markers);
+
+        var _delay = 0;
+        var _inc_delay = 250;
+
+        _array.forEach ( function (elemento, indice, array){
+          _delay += _inc_delay;
+          setTimeout ( function () {
+            console.log('Espero...' + _delay );
+            markers.addLayer(elemento);
+            console.log('Añado "' +  elemento.options.title + '"');
+          }, _delay );
+        });
       }
 
       map.addLayer(stamen_layer_watercolor_low);
@@ -110,7 +116,7 @@
       L.control.zoom ( zoom_options ).addTo ( map );
 
       L.easyButton( '<strong>&#9658;</strong>', function(){
-        start_animation ();
+        start_animation ( marker_array );
       }).addTo(map);
 
       L.easyButton( '<strong>?</strong>', function(){
