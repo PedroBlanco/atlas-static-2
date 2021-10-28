@@ -3,7 +3,7 @@ const Papa = require('papaparse');
 const Handlebars = require('handlebars');
 
 // Datos CSV de origen
-var filename = "test3.csv";
+var filename = "test5.csv";
 // var srcdir_mapas = "csv_src";
 
 // Directorio destino de los archivos MarkDown
@@ -32,6 +32,7 @@ fs.readFile(filename, 'utf8' , (err, data) => {
     }
     Papa.parse(data, {
         header: true,
+        skipEmptyLines: true,
         step: function(row) {
             // console.log ( row.data ); // Mostramos los datos en bruto de la línea
 
@@ -40,6 +41,7 @@ fs.readFile(filename, 'utf8' , (err, data) => {
             // console.log ( result ); // Mostramos la línea convertida a MarkDown
 
             // Creamos un archivo en destdir_mapas por cada línea convertida a MarkDown
+            console.log ( 'Nombre del mapa: ' + row.data['Nombre del mapa'] );
             var _map_filename = destdir_mapas + '/' + row.data['Nombre del mapa'].replace(/[\/\s\:\.]/g,'_') + '.md'
             fs.writeFile( _map_filename, result, err => {
                 if (err) {
