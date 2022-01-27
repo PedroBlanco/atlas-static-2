@@ -4,30 +4,30 @@
         {{#if frontMatter.youtube}}
             <div class="row">
                 <div class="col-md-4">
-                    <h4>{{frontMatter.title}}</h4>
+                    <h4  aria-label="Título">{{frontMatter.title}}</h4>
                     <br>
-                    <div>{{{content}}}</div>
+                    <div aria-label="Texto de la página">{{{content}}}</div>
                 </div>
                 <div class="col-md-8">            
-                    <div class="video embed-responsive embed-responsive-16by9">
+                    <div class="video embed-responsive embed-responsive-16by9" aria-label="Vídeo">
                         <iframe width=960 height=540 src="https://www.youtube.com/embed/{{frontMatter.youtube}}"
-                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Marco de vídeo"></iframe>
                     </div>
                     {{#if frontMatter.tags}}
-                    <div class="small">Etiquetas: <i>{{frontMatter.tags}}</i></div>
+                    <div class="small" aria-label="Etiquetas">Etiquetas: <i>{{frontMatter.tags}}</i></div>
                     <br>
                     {{/if}}
                 </div>
             </div>
         {{else}}
             <div class="col-md-12">
-                <p>{{{content}}}</p>
-                <div>
+                <p aria-label="Texto de la página">{{{content}}}</p>
+                <div arial-label="Datos del mapa">
                     <h1>Mapa: {{frontMatter.title}}</h1>
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist" aria-label="Lista de pestañas">
                         {{#if frontMatter.URL }}
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="mapa-tab" data-toggle="tab" href="#mapa" role="tab" aria-controls="mapa" aria-selected="true">Fichas del Mapa</a>
+                            <a class="nav-link active" id="mapa-tab" data-toggle="tab" href="#mapa" role="tab" aria-controls="mapa" aria-selected="true" aria-label="Fichas del mapa">Fichas del Mapa</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="descripcion-tab" data-toggle="tab" href="#descripcion" role="tab" aria-controls="descripcion" aria-selected="false">Descripción</a>
@@ -41,10 +41,10 @@
                         <a class="nav-link" id="metadatos-tab" data-toggle="tab" href="#metadatos" role="tab" aria-controls="metadatos" aria-selected="false">Metadatos</a>
                     </li> --}}
                     </ul>
-                    <div class="tab-content" id="myTabContent">
+                    <div class="tab-content" id="myTabContent" aria-label="Pestañas">
                         {{#if frontMatter.URL }}
                         <div class="tab-pane fade show active" id="mapa" role="tabpanel" aria-labelledby="mapa-tab">
-                            <iframe title="Ficha del mapa {{frontMatter.title}}" src="{{frontMatter.URL}}?widget=true&headers=false&chrome=false" class="embedded-frame"></iframe>
+                            <iframe title="Ficha del mapa {{frontMatter.title}}" src="{{frontMatter.URL}}?widget=true&headers=false&chrome=false" class="embedded-frame" title="Ficha embebida"></iframe>
                         </div>
                         <div class="tab-pane fade" id="descripcion" role="tabpanel" aria-labelledby="descripcion-tab">
                         {{else}}
@@ -52,17 +52,17 @@
                         {{/if}}
                             <div class="card">
                             <div class="card-body">
-                            <p class="card-text lead">{{frontMatter.desc}}</p>
+                            <p class="card-text lead" aria-label="Descripción del mapa">{{frontMatter.desc}}</p>
                             {{#unless frontMatter.URL }}
-                            <p class="card-text text-muted">Este mapa no tiene fichas públicas <em>todavía</em>.</p>
+                            <p class="card-text text-muted" aria-label="Mapa sin fichas">Este mapa no tiene fichas públicas <em>todavía</em>.</p>
                             {{else}}
-                            <a href="{{frontMatter.URL}}" target="_blank" class="card-link">Enlace a las fichas de este mapa.</a>
+                            <a href="{{frontMatter.URL}}" target="_blank" class="card-link" aria-label="Enlace a las fichas">Enlace a las fichas de este mapa.</a>
                             {{/unless}}
                             <hr>
                             <h4 class="card-title">Metadatos</h4>
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
+                            <table class="table table-striped table-bordered" aria-label="Tabla de metadatos">
+                                <thead aria-label="Cabecera de tabla">
+                                    <tr aria-label="Fila de cabecera">
                                         <th scope="col" align="center">
                                             Creación
                                         </th>
@@ -77,18 +77,18 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td align="center">
+                                <tbody aria-label="Datos de tabla">
+                                    <tr aria-label="Fila de datos">
+                                        <td align="center" aria-label="Fecha de creación">
                                             {{frontMatter.creation}}
                                         </td>
-                                        <td align="center">
+                                        <td align="center" aria-label="Fecha de actualización">
                                             {{frontMatter.update}}
                                         </td>
-                                        <td>
+                                        <td aria-label="Administración">
                                             {{frontMatter.administration}}
                                         </td>
-                                        <td align="center">
+                                        <td align="center" aria-label="Estado o fase de desarrollo">
                                             {{frontMatter.phase}}
                                         </td>
                                     </tr>
