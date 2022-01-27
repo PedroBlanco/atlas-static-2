@@ -168,6 +168,17 @@
 
       map.addControl( search_control ); //inizialize search control
 
+      // Añado etiqueta aria-label a (los) campo(s) de búsqueda (puede que no pase el test WAI si se añade con JS)
+      document.querySelectorAll('input.search-input')
+              .forEach(function(campo) {
+                campo.setAttribute('aria-label', "Buscar");
+              });
+      document.querySelectorAll('a.search-button')
+              .forEach(function(campo) {
+                campo.setAttribute('aria-label', "Buscar");
+              });
+              
+
       {{!-- L.control.attribution( attribution_options ).removeAttribution('Map tiles by <a href="http://stamen.com/">Stamen Design</a>, ').addAttribution( _attribution ).addTo ( map ); --}}
 
       {{!-- console.log ( _attribution ); --}}
