@@ -16,6 +16,8 @@
   "build": {
     "sourceDir": "./src",
     "outputDir": "./dist",
+    
+    "urlsPrefix": "",
 
     "templateLanguage": "handlebars",
     "templateFileExtension": ".hbs",
