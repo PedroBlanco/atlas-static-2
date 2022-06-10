@@ -8,9 +8,9 @@
   "indexPage": "index.html",
 
   "menuItems": [
-    { "name": "Mapas", "url": "mapas" },
-    { "name": "Animación", "url": "mapas/animacion" },
-    { "name": "Acerca de...", "url": "acerca-de" }
+    { "name": "Mapas", "url": "mapas/" },
+    { "name": "Animación", "url": "mapas/animacion/" },
+    { "name": "Acerca de...", "url": "acerca-de/" }
   ],
 
   "build": {
