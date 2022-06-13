@@ -1,5 +1,6 @@
 <template>
-{{!-- <!DOCTYPE html> --}}<html lang="{{config.htmlLang}}">
+<!DOCTYPE html>
+<html lang="{{config.htmlLang}}">
 <head>
   <meta charset="utf-8">
   <title>{{frontMatter.title}} | {{config.longTitle}}</title>
@@ -7,9 +8,10 @@
   <meta name="description" content="{{config.metaDescription}}">
   <meta name="keywords" content="{{config.metaKeywords}}, {{frontMatter.tags}}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html">
   <link rel="icon" type="image/x-icon" href="favicon-atlas.ico">
   
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
     crossorigin="anonymous">
   
@@ -17,18 +19,18 @@
     integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" 
     crossorigin=""/> --}}
 
-  <link rel="stylesheet" href="css/leaflet.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/leaflet.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
   {{#if frontMatter.cluster}}
-  <link rel="stylesheet" href="css/MarkerCluster.Default.css">
-  <link rel="stylesheet" href="css/MarkerCluster.css">
+  <link rel="stylesheet" type="text/css" href="css/MarkerCluster.Default.css">
+  <link rel="stylesheet" type="text/css" href="css/MarkerCluster.css">
   {{/if}}
   {{#if frontMatter.search}}
-  <link rel="stylesheet" href="css/leaflet-search.min.css">
-  <link rel="stylesheet" href="css/leaflet-search.mobile.min.css">
+  <link rel="stylesheet" type="text/css" href="css/leaflet-search.min.css">
+  <link rel="stylesheet" type="text/css" href="css/leaflet-search.mobile.min.css">
   {{/if}}
   {{#if frontMatter.time_animation}}
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
   {{/if}}
   
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
