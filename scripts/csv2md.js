@@ -42,7 +42,10 @@ fs.readFile(filename, 'utf8' , (err, data) => {
 
             // Creamos un archivo en destdir_mapas por cada línea convertida a MarkDown
             console.log ( 'Nombre del mapa: ' + row.data['Nombre del mapa'] );
-            var _map_filename = destdir_mapas + '/' + row.data['Nombre del mapa'].replace(/[\/\s\:\.]/g,'_') + '.md'
+
+            // Normalizamos el nombre del mapa y quitamos los diacríticos (aunque queda la ñ)
+            var _map_filename = destdir_mapas + '/' + row.data['Nombre del mapa'].normalize('NFD').replace(/[\u0300-\u036f]/g,"").replace(/[\/\s\:\.]/g,'_') + '.md'
+            
             fs.writeFile( _map_filename, result, err => {
                 if (err) {
                   console.error(err)
