@@ -44,7 +44,7 @@ fs.readFile(filename, 'utf8' , (err, data) => {
             console.log ( 'Nombre del mapa: ' + row.data['Nombre del mapa'] );
 
             // Normalizamos el nombre del mapa y quitamos los diacríticos (aunque queda la ñ)
-            var _map_filename = destdir_mapas + '/' + row.data['Nombre del mapa'].normalize('NFD').replace(/[\u0300-\u036f]/g,"").replace(/[\/\s\:\.]/g,'_') + '.md'
+            var _map_filename = destdir_mapas + '/' + row.data['Nombre del mapa'].normalize('NFD').replace(/[\u0300-\u036f]/g,"").replace(/[\/\s\:\.\,]/g,'_') + '.md'
             
             fs.writeFile( _map_filename, result, err => {
                 if (err) {
