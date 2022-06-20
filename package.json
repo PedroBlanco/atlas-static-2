@@ -8,7 +8,7 @@
   "license": "EUPL-1.2",
   "private": false,
   "dependencies": {
-    "bakeit": "^0.2.6",
+    "bakeit": "github:PedroBlanco/bakeit",
     "handlebars": "^4.7.7",
     "leaflet": "^1.7.1",
     "leaflet-search": "^3.0.2",
