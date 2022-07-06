@@ -65,5 +65,5 @@ jspm_packages/
 # Archivos específicos que vuelven a salir en VSCodium (?)
 dist/newyork/index.html
 dist/mapas/index.html
-bakeit-config.json
 Notas Locales.txt
+bakeit-config.json
