@@ -1,0 +1,79 @@
+{
+  "id": "cc8e3a11-8a74-4839-8aae-edec450a86ab",
+  "version": "2.0",
+  "name": "atlas-static-2",
+  "url": "http://localhost:8080/",
+  "tests": [{
+    "id": "3f328e25-c148-460e-8cfe-1153b91275e2",
+    "name": "01 Test inicial",
+    "commands": [{
+      "id": "e0544126-fff3-4b30-bec5-770a662a8a90",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1280x800",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "45be3675-d46f-41bc-9498-b9e1d3d7a41e",
+      "comment": "",
+      "command": "open",
+      "target": "acerca-de/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b5309e20-5762-4f3b-b692-dafefb4ee70e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Atlas de Conocimiento Crítico",
+      "targets": [
+        ["linkText=Atlas de Conocimiento Crítico", "linkText"],
+        ["css=.navbar-brand", "css:finder"],
+        ["xpath=//a[contains(text(),'Atlas de Conocimiento Crítico')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'index.html')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Atlas de Conocimiento Crítico')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "98a2fd88-7a48-4dba-8c4e-69f2d5f29c99",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Acerca de...",
+      "targets": [
+        ["linkText=Acerca de...", "linkText"],
+        ["css=.nav-item:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Acerca de...')]", "xpath:link"],
+        ["xpath=//div[@id='collapsingNavbar']/div/a[3]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'acerca-de/')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Acerca de...')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4ac5c207-885c-405e-b251-9ecf61f74dc9",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Animación",
+      "targets": [
+        ["linkText=Animación", "linkText"],
+        ["css=.nav-item:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'Animación')]", "xpath:link"],
+        ["xpath=//div[@id='collapsingNavbar']/div/a[2]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'mapas/animacion/')]", "xpath:href"],
+        ["xpath=//div/a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Animación')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "fd930b89-ab8b-4428-a9e4-9ac3ea6cc54f",
+    "name": "",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:8080/"],
+  "plugins": []
+}
