@@ -8,9 +8,9 @@
   "license": "EUPL-1.2",
   "private": false,
   "dependencies": {
-    "bakeit": "^0.2.6",
+    "@pedroblanco/bakeit": "PedroBlanco/bakeit",
     "handlebars": "^4.7.7",
-    "leaflet": "^1.7.1",
+    "leaflet": "^1.8.0",
     "leaflet-search": "^3.0.2",
     "leaflet-wfst": "^2.0.1-beta.27",
     "leaflet.markercluster": "^1.5.1",

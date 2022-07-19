@@ -44,7 +44,7 @@
                     <div class="tab-content" id="myTabContent" aria-label="Pestañas">
                         {{#if frontMatter.URL }}
                         <div class="tab-pane fade show active" id="mapa" role="tabpanel" aria-labelledby="mapa-tab">
-                            <iframe title="Ficha del mapa {{frontMatter.title}}" src="{{frontMatter.URL}}?widget=true&headers=false&chrome=false" class="embedded-frame" title="Ficha embebida"></iframe>
+                            <iframe title="Ficha del mapa {{frontMatter.title}}" src="{{frontMatter.URL}}?widget=true&headers=false&chrome=false" class="embedded-frame" title="Ficha embebida" scrolling="no"></iframe>
                         </div>
                         <div class="tab-pane fade" id="descripcion" role="tabpanel" aria-labelledby="descripcion-tab">
                         {{else}}
