@@ -46,8 +46,18 @@
       _attribution += 'Watercolor data by <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.';
 
       // Capas de etiquetas
-      var stamen_layer_tonerlines = new L.StamenTileLayer("toner-hybrid", {attribution: '', attributionControl: false});
+      {{!-- var stamen_layer_tonerlines = new L.StamenTileLayer("toner-hybrid", {attribution: '', attributionControl: false}); --}}
       _attribution += 'Toner data by <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://www.openstreetmap.org/copyright">ODbL</a>.';
+      var capaToponimos = new L.tileLayer (
+        'https://www.ign.es/wmts/ign-base?layer=IGNBaseOrto&style=default&tilematrixset=GoogleMapsCompatible&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/png&&TileMatrix={z}&TileCol={x}&TileRow={y}',
+        {
+          maxZoom:18,
+          minZoom:1,
+          scheme:'xyz',
+          continuousWorld:true,
+          attribution:"© IGN"
+        }
+        );
       {{!-- var etiquetas_layer = SPAIN_NGBE; --}}
       {{!-- var etiquetas_layer = ANDALUCIA_NGA_INSPIRE; --}}
 
@@ -93,7 +103,8 @@
 
       map.addLayer(stamen_layer_watercolor_low);
       map.addLayer(stamen_layer_watercolor_high);
-      map.addLayer(stamen_layer_tonerlines);
+      {{!-- map.addLayer(stamen_layer_tonerlines); --}}
+      map.addLayer(capaToponimos);
       {{!-- map.addLayer(etiquetas_layer); --}}
       {{!-- etiquetas_layer.addTo(map); --}}
 
