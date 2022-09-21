@@ -39,8 +39,19 @@
       _attribution += 'Watercolor data by <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.';
 
       // Capas de etiquetas
-      var stamen_layer_tonerlines = new L.StamenTileLayer("toner-hybrid", {attribution: '', attributionControl: false});
-      _attribution += 'Toner data by <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://www.openstreetmap.org/copyright">ODbL</a>.';
+      {{!-- var stamen_layer_tonerlines = new L.StamenTileLayer("toner-hybrid", {attribution: '', attributionControl: false}); --}}
+      {{!-- _attribution += 'Toner data by <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'; --}}
+      // Cambio la capa de etiquetas toponímicas a una del IGN
+      var capaToponimos = new L.tileLayer (
+        'https://www.ign.es/wmts/ign-base?layer=IGNBaseOrto&style=default&tilematrixset=GoogleMapsCompatible&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/png&&TileMatrix={z}&TileCol={x}&TileRow={y}',
+        {
+          maxZoom:18,
+          minZoom:1,
+          scheme:'xyz',
+          continuousWorld:true,
+          attribution:"© IGN"
+        }
+        );
       
       stamen_layer_watercolor_low.options.maxNativeZoom = 14;
       stamen_layer_watercolor_high.options.maxNativeZoom = 17;
@@ -92,7 +103,8 @@
 
       map.addLayer(stamen_layer_watercolor_low);
       map.addLayer(stamen_layer_watercolor_high);
-      map.addLayer(stamen_layer_tonerlines);
+      {{!-- map.addLayer(stamen_layer_tonerlines); --}}
+      map.addLayer(capaToponimos);
       {{!-- map.addLayer(etiquetas_layer); --}}
       {{!-- etiquetas_layer.addTo(map); --}}
 
