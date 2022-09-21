@@ -47,7 +47,7 @@
 
       // Capas de etiquetas
       {{!-- var stamen_layer_tonerlines = new L.StamenTileLayer("toner-hybrid", {attribution: '', attributionControl: false}); --}}
-      _attribution += 'Toner data by <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://www.openstreetmap.org/copyright">ODbL</a>.';
+      {{!-- _attribution += 'Toner data by <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'; --}}
       // Cambio la capa de etiquetas toponímicas a una del IGN
       var capaToponimos = new L.tileLayer (
         'https://www.ign.es/wmts/ign-base?layer=IGNBaseOrto&style=default&tilematrixset=GoogleMapsCompatible&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/png&&TileMatrix={z}&TileCol={x}&TileRow={y}',
