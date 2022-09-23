@@ -73,9 +73,12 @@ fs.readFile(filename, 'utf8' , (err, data) => {
                   return
                 }
                 //file written successfully
+                // console.log ( '+ Creando ' + _map_filename + ' de ' + _autor );
                 console.log ( '+ Creando ' + _map_filename );
                 let mapa_actual = { 'name': row.data['Nombre del mapa'], 'filename': _map_filename }
+                // FIXME: fallo aquí
                 let autor_actual = autores.find( autor_actual => autor_actual.name === _autor )
+                console.log ( '+ Autor: ' + autor_actual )
                 if ( autor_actual != null ) {
                   autor_actual.mapas.push ( mapa_actual )
                 } else {
