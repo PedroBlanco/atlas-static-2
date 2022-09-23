@@ -13,7 +13,7 @@ var destdir_autores = "src/autores";
 // Plantilla de salida de MarkDown
 var md_template_filename = "src/.theme/map.md.hbs";
 var md_template = '';
-var md_template_autor_filename = "src/.theme/author.md.hbs";
+var md_template_autor_filename = "src/.theme/autor.md.hbs";
 var md_template_autor = '';
 const autores = [];
 

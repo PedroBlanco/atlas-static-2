@@ -6,10 +6,11 @@
   "htmlLang": "es",
   "baseURL": "http://localhost:8080/",
   "indexPage": "index.html",
-  "version": "0.0.1",
+  "version": "1.0.3",
 
   "menuItems": [
     { "name": "Mapas", "url": "mapas" },
+    { "name": "Autores", "url": "autores" },
     { "name": "Animación", "url": "mapas/animacion" },
     { "name": "Acerca de...", "url": "acerca-de" }
   ],
