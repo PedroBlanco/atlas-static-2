@@ -24,6 +24,7 @@
                 <p aria-label="Texto de la página">{{{content}}}</p>
                 <div arial-label="Datos del mapa">
                     <h1>Mapa: {{frontMatter.title}}</h1>
+                    <h2>Autor/a: <a href="{{frontMatter.autor_enlace}}">{{frontMatter.autor_nombre}} {{frontMatter.autor_apellidos}}</a></h2>
                     <ul class="nav nav-tabs" id="myTab" role="tablist" aria-label="Lista de pestañas">
                         {{#if frontMatter.URL }}
                         <li class="nav-item" role="presentation">

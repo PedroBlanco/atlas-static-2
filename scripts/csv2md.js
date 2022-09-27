@@ -167,10 +167,6 @@ try {
       console.group ();
       // console.log ( row.data ); // Mostramos los datos en bruto de la línea
 
-      // Leemos cada línea y la convertimos de JSON a MarkDown
-      let result = md_template( row.data );
-      // console.log ( result ); // Mostramos la línea convertida a MarkDown
-
       // Nombre del autor y nombre de su archivo
       let _autor = row.data['autor_nombre'] + ' ' + row.data['autor_apellidos'];
       let _autor_name = _autor.normalize('NFD').replace(/[\u0300-\u036f]/g,"").replace(/[\/\s\:\.\,]/g,'_');
@@ -180,7 +176,14 @@ try {
 
       // Normalizamos el nombre del mapa y quitamos los diacríticos (aunque queda la ñ)
       let _map_filename = row.data['Nombre del mapa'].normalize('NFD').replace(/[\u0300-\u036f]/g,"").replace(/[\/\s\:\.\,]/g,'_');
+
+      // TODO: Añadir nuevo campo a la fila
+      row.data['autor_enlace'] = 'autores/' + _autor_name + '/';
        
+      // Leemos cada línea y la convertimos de JSON a MarkDown
+      let result = md_template( row.data );
+      // console.log ( result ); // Mostramos la línea convertida a MarkDown
+
       fs.writeFileSync( destdir_mapas + '/' + _map_filename + '.md' , result );
 
       // console.log ( '+ Creando ' + _map_filename + ' de ' + _autor );
