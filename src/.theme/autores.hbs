@@ -2,6 +2,13 @@
     <div class="content-window">
         <div class="container-fluid">
           <h1>Autores de los Mapas</h1>
+          <ul>
+            {{#each pages}}
+            {{#if frontMatter.autor}}
+            <li><a href="{{url}}/">{{frontMatter.autor}}</a></li>
+            {{/if}}
+            {{/each}}
+          </ul>
         </div>
     </div>
 </template>

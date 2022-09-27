@@ -1,7 +1,13 @@
 ---
+template: autor
+autor: {{'name'}} 
 hint: {{'name'}}
 title: {{'name'}}
-mapas: {{'mapas'}}
+mapas: {{{'mapas_JSON'}}}
 back_link: true
 search: false
 ---
+## Mapas: 
+{{#each mapas}}
+- [{{name}}]({{filename}})
+{{/each}}
