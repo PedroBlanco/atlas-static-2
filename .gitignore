@@ -2,6 +2,8 @@ dist/*
 src/mapas/*
 !src/mapas/index.md
 !src/mapas/animacion.md
+src/autores/*
+!src/autores/index.md
 
 node_modules
 /public/hot
