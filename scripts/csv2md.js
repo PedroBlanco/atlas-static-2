@@ -3,7 +3,7 @@ const Papa = require('papaparse');
 const Handlebars = require('handlebars');
 
 // Datos CSV de origen
-var filename = "test5.csv";
+var filename = "test6.csv";
 // var srcdir_mapas = "csv_src";
 
 // Directorio destino de los archivos MarkDown
