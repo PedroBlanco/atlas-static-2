@@ -26,17 +26,16 @@
             </div>
         {{else}}
             <div class="col-md-12">
-                <p aria-label="Texto de la página">{{{content}}}</p>
                 <div arial-label="Datos del mapa">
                     <h1>Mapa: {{frontMatter.title}}</h1>
                     <h2>Autor/a: <a href="{{frontMatter.autor_enlace}}">{{frontMatter.autor_nombre}} {{frontMatter.autor_apellidos}}</a></h2>
                     <ul class="nav nav-tabs" id="myTab" role="tablist" aria-label="Lista de pestañas">
                         {{#if frontMatter.URL }}
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="mapa-tab" data-toggle="tab" href="#mapa" role="tab" aria-controls="mapa" aria-selected="true" aria-label="Fichas del mapa">Fichas del Mapa</a>
+                            <a class="nav-link" id="mapa-tab" data-toggle="tab" href="#mapa" role="tab" aria-controls="mapa" aria-selected="true" aria-label="Fichas del mapa">Fichas del Mapa</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="descripcion-tab" data-toggle="tab" href="#descripcion" role="tab" aria-controls="descripcion" aria-selected="false">Descripción</a>
+                            <a class="nav-link active" id="descripcion-tab" data-toggle="tab" href="#descripcion" role="tab" aria-controls="descripcion" aria-selected="false">Descripción</a>
                         </li>
                         {{else}}
                         <li class="nav-item" role="presentation">
@@ -49,16 +48,68 @@
                     </ul>
                     <div class="tab-content" id="myTabContent" aria-label="Pestañas">
                         {{#if frontMatter.URL }}
-                        <div class="tab-pane fade show active" id="mapa" role="tabpanel" aria-labelledby="mapa-tab">
+                        <div class="tab-pane fade" id="mapa" role="tabpanel" aria-labelledby="mapa-tab">
                             <iframe title="Ficha del mapa {{frontMatter.title}}" src="{{frontMatter.URL}}?widget=true&headers=false&chrome=false" class="embedded-frame" title="Ficha embebida" scrolling="no"></iframe>
                         </div>
-                        <div class="tab-pane fade" id="descripcion" role="tabpanel" aria-labelledby="descripcion-tab">
+                        <div class="tab-pane fade show active" id="descripcion" role="tabpanel" aria-labelledby="descripcion-tab">
                         {{else}}
                         <div class="tab-pane fade show active" id="descripcion" role="tabpanel" aria-labelledby="descripcion-tab">
                         {{/if}}
                             <div class="card">
                             <div class="card-body">
                             <p class="card-text lead" aria-label="Descripción del mapa">{{frontMatter.desc}}</p>
+                            <p aria-label="Resumen del mapa">{{{content}}}</p>
+                            {{#if frontMatter.r_version}}
+                            <h2 id="nivel-de-criticidad-detectado">Criticidad: niveles detectados</h2>
+                            <p>(1 mín- 5 máx, siendo 1 el estado más crítico)</p>
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                    <th>Documentación
+                                    </th>
+                                    <th>Difusión
+                                    </th>
+                                    <th>Expertise(Pericia) de la organización en el conocimiento
+                                    </th>
+                                    <th>Dificultad de recuperación en caso de pérdida
+                                    </th>
+                                    <th>Riesgo de pérdida a corto plazo
+                                    </th>
+                                    <th>Propiedad/control del conocimiento
+                                    </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    <td>{{frontMatter.r_documentacion}}
+                                    </td>
+                                    <td>{{frontMatter.r_difusion}}
+                                    </td>
+                                    <td>{{frontMatter.r_pericia}}
+                                    </td>
+                                    <td>{{frontMatter.r_recuperacion}}
+                                    </td>
+                                    <td>{{frontMatter.r_riesgo}}
+                                    </td>
+                                    <td>{{frontMatter.r_propiedad}}
+                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div style="width: 600px;"><canvas id="radar_mapa"></canvas></div>
+                            <script src="js/radar_mapa.js"></script>
+                            <script>
+                                const r_data = [
+                                    { label: 'Documentación', count: {{frontMatter.r_documentacion}} },
+                                    { label: 'Difusión', count: {{frontMatter.r_difusion}} },
+                                    { label: 'Expertise(Pericia) de la organización', count: {{frontMatter.r_pericia}} },
+                                    { label: 'Dificultad de recuperación en caso de pérdida', count: {{frontMatter.r_recuperacion}} },
+                                    { label: 'Riesgo de pérdida a corto plazo', count: {{frontMatter.r_riesgo}} },
+                                    { label: 'Propiedad/control del conocimiento', count: {{frontMatter.r_propiedad}} }
+                                ];
+                                radar_mapa ( r_data, 'radar_mapa', '{{frontMatter.title}}' );
+                            </script>
+                            {{/if}}
                             {{#unless frontMatter.URL }}
                             <p class="card-text text-muted" aria-label="Mapa sin fichas">Este mapa no tiene fichas públicas <em>todavía</em>.</p>
                             {{else}}
