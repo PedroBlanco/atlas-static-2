@@ -52,7 +52,8 @@
       { "src": "./js/leaflet.LimitZoom.js", "dst": "./dist/js/leaflet.LimitZoom.js" },
       { "src": "./js/leaflet.ContinuousZoom.js", "dst": "./dist/js/leaflet.ContinuousZoom.js" },
       { "src": "./node_modules/leaflet-wfst/dist/leaflet-wfst.src.js", "dst": "./dist/js/leaflet-wfst.min.js" },
-      { "src": "./js/Nomenclator.js", "dst": "./dist/js/Nomenclator.js" },
+      { "src": "./node_modules/chart.js/dist/chart.js", "dst": "./dist/js/chart.js" },
+      { "src": "./node_modules/chart.js/dist/chart.js.map", "dst": "./dist/js/chart.js.map" },
       { "src": "./js/atlas.js", "dst": "./dist/js/atlas.js" }
     ]
   }
