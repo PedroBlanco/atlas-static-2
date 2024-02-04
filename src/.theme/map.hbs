@@ -38,10 +38,9 @@
       var markers = L.markerClusterGroup( cluster_options );
 
       // Capas de fondo
-      var stamen_layer_watercolor_low = new L.StamenTileLayer("watercolor", {attribution: '', attributionControl: false});
-      var stamen_layer_watercolor_high = new L.StamenTileLayer("watercolor", {attribution: '', attributionControl: false});
-      _attribution += 'Watercolor &amp; Toner tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>.';
-      _attribution += 'Watercolor data by <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.';
+      var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap'
+      });
 
       // Capas de etiquetas
       {{!-- var stamen_layer_tonerlines = new L.StamenTileLayer("toner-hybrid", {attribution: '', attributionControl: false}); --}}
@@ -58,8 +57,9 @@
         }
         );
       
-      stamen_layer_watercolor_low.options.maxNativeZoom = 14;
-      stamen_layer_watercolor_high.options.maxNativeZoom = 17;
+      {{!-- stamen_layer_watercolor_low.options.maxNativeZoom = 14; --}}
+      {{!-- stamen_layer_watercolor_high.options.maxNativeZoom = 17; --}}
+
 
       {{#each pages}}
         {{#if frontMatter.loc}}
@@ -84,14 +84,16 @@
         {{/if}}
       {{/each}}
 
-      map.addLayer(stamen_layer_watercolor_low);
-      map.addLayer(stamen_layer_watercolor_high);
+      {{!-- map.addLayer(stamen_layer_watercolor_low); --}}
+      {{!-- map.addLayer(stamen_layer_watercolor_high); --}}
       {{!-- map.addLayer(stamen_layer_tonerlines); --}}
       map.addLayer(capaToponimos);
       {{!-- map.addLayer(etiquetas_layer); --}}
       {{!-- etiquetas_layer.addTo(map); --}}
 
       map.addLayer(markers);
+      
+      map.addLayer(osm);
 
       var attribution_options = init_attribution_options ();
 
