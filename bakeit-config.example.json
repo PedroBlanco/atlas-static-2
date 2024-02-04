@@ -6,7 +6,7 @@
   "htmlLang": "es",
   "baseURL": "http://localhost:8080/",
   "indexPage": "index.html",
-  "version": "1.0.5",
+  "version": "1.0.6",
 
   "menuItems": [
     { "name": "Mapas", "url": "mapas" },
