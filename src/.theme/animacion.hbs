@@ -31,14 +31,11 @@
       var markers = L.markerClusterGroup( cluster_options );
 
       // Capas de fondo
-      var stamen_layer_watercolor_low = new L.StamenTileLayer("watercolor", {attribution: '', attributionControl: false});
-      var stamen_layer_watercolor_high = new L.StamenTileLayer("watercolor", {attribution: '', attributionControl: false});
-      _attribution += 'Watercolor &amp; Toner tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>.';
-      _attribution += 'Watercolor data by <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.';
+      var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap'
+      });
 
       // Capas de etiquetas
-      {{!-- var stamen_layer_tonerlines = new L.StamenTileLayer("toner-hybrid", {attribution: '', attributionControl: false}); --}}
-      {{!-- _attribution += 'Toner data by <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'; --}}
       // Cambio la capa de etiquetas toponímicas a una del IGN
       var capaToponimos = new L.tileLayer (
         'https://www.ign.es/wmts/ign-base?layer=IGNBaseOrto&style=default&tilematrixset=GoogleMapsCompatible&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/png&&TileMatrix={z}&TileCol={x}&TileRow={y}',
@@ -51,10 +48,7 @@
         }
         );
       
-      stamen_layer_watercolor_low.options.maxNativeZoom = 14;
-      stamen_layer_watercolor_high.options.maxNativeZoom = 17;
       {{!-- Poniendo minNativeZoom a 9 se consigue mejor definición, pero si hacemos zoom hacia afuera, pedimos demasiados datos y se notan las teselas --}}
-      {{!-- stamen_layer_watercolor_high.options.minNativeZoom = 9; --}}
 
       const marker_array = [];
 
@@ -99,14 +93,11 @@
         });
       }
 
-      map.addLayer(stamen_layer_watercolor_low);
-      map.addLayer(stamen_layer_watercolor_high);
-      {{!-- map.addLayer(stamen_layer_tonerlines); --}}
       map.addLayer(capaToponimos);
-      {{!-- map.addLayer(etiquetas_layer); --}}
-      {{!-- etiquetas_layer.addTo(map); --}}
 
-      // map.addLayer(markers);
+      map.addLayer(markers);
+
+      map.addLayer(osm);
 
       var attribution_options = init_attribution_options ();
 
@@ -119,7 +110,6 @@
       });
       // Parece que moveend se dispara siempre y además se dispara siempre el último
 
-       {{!-- L.control.attribution( attribution_options ).removeAttribution('Map tiles by <a href="http://stamen.com/">Stamen Design</a>, ').addAttribution( _attribution ).addTo ( map ); --}}
 
       L.control.scale ( scale_options ).addTo ( map );
 
