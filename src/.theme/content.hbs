@@ -107,7 +107,7 @@
                                     { label: 'Riesgo de pérdida a corto plazo', count: {{frontMatter.r_riesgo}} },
                                     { label: 'Propiedad/control del conocimiento', count: {{frontMatter.r_propiedad}} }
                                 ];
-                                radar_mapa ( r_data, 'radar_mapa', '{{frontMatter.title}}' );
+                                radar_mapa ( r_data, 'radar_mapa', '{{frontMatter.r_conocimiento}}' );
                             </script>
                             {{/if}}
                             {{#unless frontMatter.URL }}
