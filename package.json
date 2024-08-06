@@ -14,7 +14,8 @@
     "leaflet-search": "^3.0.2",
     "leaflet-wfst": "^2.0.1-beta.27",
     "leaflet.markercluster": "^1.5.1",
-    "papaparse": "^5.3.1"
+    "papaparse": "^5.3.1",
+    "yarn": "^1.22.22"
   },
   "scripts": {
     "csv2md": "node scripts/csv2md.js"
